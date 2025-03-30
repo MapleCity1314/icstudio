@@ -8,20 +8,13 @@ ICStudio 团队官网，提供团队介绍，为团队成员提供服务
 
 ### 前端
 
-- React19
-- Next.js 15 
-
-- Tailwind css
-- clsx
-
+- pnpm + monorepo
+- React19 + Next.js 15
+- Tailwind css + clsx
 - zustand
-
 - motion
-
-- IconPark
-
+- HeroIcon
 - hero ui
-
 - shadcn ui
 - magic ui 
 - aceternity ui

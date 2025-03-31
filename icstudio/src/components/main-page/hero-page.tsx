@@ -80,7 +80,7 @@ function ElegantShape({
 }
 
 export default function HeroGeometric({
-  badge = "IC studio",
+  badge = "IC Studio",
   title1 = "尽所能，创所想",
   title2 = "Infinity Creators",
 }: {

@@ -1,5 +1,5 @@
-import { AnimatedTestimonialsDemo } from "@/components/self-introduce";
-import HeroGeometric from "@/components/hero-page";
+import { AnimatedTestimonialsDemo } from "@/components/main-page/self-introduce";
+import HeroGeometric from "@/components/main-page/hero-page";
 import Nav from "@/components/nav";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 

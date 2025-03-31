@@ -8,6 +8,24 @@ interface teamInfo {
 
 export const team: teamInfo[] = [
         {
+                quote: "团队创始人",
+                name: "MapleCity1314",
+                designation: "团队创始人，同时也是团队中的前端开发，主要使用Vue，React，Next.js",
+                src: "/teamAvatar/boybaba.png",
+        },
+        {
+                quote:"后端+运维",
+                name:"RobinElysia",
+                designation:"精通Java、Python后端开发及其后端架构，Kubernetes、Docker、Linux、各种中间件运维部署，熟悉计算机网络，目前攻读人工智能领域",
+                src:"/teamAvatar/qwp.png"
+        },
+        {
+                quote:"Student Developer",
+                name:"Aurora",
+                designation:"Translation: 20yo tech apprentice, building Java foundations (SE/DB/Web), now diving into Spring ecosystem & distributed systems. Believer in clean architecture, aspiring to solve complex problems with engineering empathy.",
+                src:"/teamAvatar/Aurora.png"
+        },
+        {
                 quote: "扫地机器人",
                 name: "巴巴博一 ",
                 designation:
@@ -18,9 +36,9 @@ export const team: teamInfo[] = [
                 src: "/teamAvatar/bababoy.png",
         },
         {
-                quote: "团队创始人",
-                name: "枫城城",
-                designation: "团队创始人，同时也是团队中的前端开发，主要使用Vue，React，Next.js",
-                src: "/teamAvatar/boybaba.png",
+                quote:"打气筒",
+                name:"拾伍",
+                designation:"正在积极努力学习前端开发ing，希望在接下来的半年里通过学习提升自己，掌握前端开发的基本知识。致力于通过学习提升技术能力，为团队贡献力量！特异功能：学得快，忘的也快！鱼plus版~",
+                src:"/teamAvatar/w.png"
         }
 ];

@@ -1,0 +1,164 @@
+Date : 2025-04-01 18:48:14
+Directory : e:\Projects\Nextjs-projects\icstudio\icstudio
+Total : 88 files,  16568 codes, 172 comments, 1729 blanks, all 18469 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          4 |      5,860 |          0 |          3 |      5,863 |
+| TypeScript JSX     |         46 |      4,924 |         59 |        426 |      5,409 |
+| YAML               |          2 |      4,663 |          0 |      1,105 |      5,768 |
+| TypeScript         |         23 |        819 |         90 |        140 |      1,049 |
+| CSS                |          1 |        117 |          0 |          6 |        123 |
+| Groovy             |          1 |         92 |          8 |         13 |        113 |
+| JSON with Comments |          1 |         27 |          0 |          1 |         28 |
+| Markdown           |          1 |         23 |          0 |         14 |         37 |
+| Docker             |          1 |         20 |         14 |         14 |         48 |
+| JavaScript         |          2 |         16 |          0 |          7 |         23 |
+| XML                |          5 |          5 |          0 |          0 |          5 |
+| Ignore             |          1 |          2 |          1 |          0 |          3 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                 | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                    |         88 |     16,568 |        172 |      1,729 |     18,469 |
+| . (Files)                                                                                            |         14 |     10,707 |         24 |      1,160 |     11,891 |
+| public                                                                                               |          5 |          5 |          0 |          0 |          5 |
+| src                                                                                                  |         69 |      5,856 |        148 |        569 |      6,573 |
+| src (Files)                                                                                          |          1 |         26 |          4 |          6 |         36 |
+| src\app                                                                                              |         13 |      1,022 |         39 |        124 |      1,185 |
+| src\app (Files)                                                                                      |          4 |        247 |         12 |         25 |        284 |
+| src\app\(auth)                                                                                       |          2 |        405 |          4 |         43 |        452 |
+| src\app\(auth)\login                                                                                 |          1 |        144 |          2 |         17 |        163 |
+| src\app\(auth)\register                                                                              |          1 |        261 |          2 |         26 |        289 |
+| src\app\admin                                                                                        |          2 |         12 |          1 |          3 |         16 |
+| src\app\api                                                                                          |          5 |        358 |         22 |         53 |        433 |
+| src\app\api\auth                                                                                     |          5 |        358 |         22 |         53 |        433 |
+| src\app\api\auth\[...nextauth]                                                                       |          1 |        106 |          4 |         13 |        123 |
+| src\app\api\auth\login                                                                               |          1 |         79 |          5 |         12 |         96 |
+| src\app\api\auth\register                                                                            |          1 |         98 |          7 |         15 |        120 |
+| src\app\api\auth\user                                                                                |          1 |         42 |          0 |          6 |         48 |
+| src\app\api\auth\verify-code                                                                         |          1 |         33 |          6 |          7 |         46 |
+| src\components                                                                                       |         40 |      4,403 |         42 |        366 |      4,811 |
+| src\components (Files)                                                                               |          6 |        539 |         12 |         43 |        594 |
+| src\components\admin                                                                                 |          1 |      1,550 |         10 |         57 |      1,617 |
+| src\components\layout                                                                                |          7 |        231 |          1 |         25 |        257 |
+| src\components\layout (Files)                                                                        |          1 |         35 |          0 |          5 |         40 |
+| src\components\layout\header                                                                         |          3 |        114 |          1 |          9 |        124 |
+| src\components\layout\sidebar                                                                        |          3 |         82 |          0 |         11 |         93 |
+| src\components\magicui                                                                               |          2 |        137 |         17 |         17 |        171 |
+| src\components\main-page                                                                             |          2 |        331 |          0 |         54 |        385 |
+| src\components\providers                                                                             |          1 |          5 |          0 |          2 |          7 |
+| src\components\ui                                                                                    |         21 |      1,610 |          2 |        168 |      1,780 |
+| src\config                                                                                           |          1 |         34 |          0 |          1 |         35 |
+| src\data                                                                                             |          2 |         85 |          0 |          4 |         89 |
+| src\hooks                                                                                            |          2 |         24 |          1 |          7 |         32 |
+| src\lib                                                                                              |          8 |        222 |         46 |         51 |        319 |
+| src\lib (Files)                                                                                      |          1 |          5 |          0 |          2 |          7 |
+| src\lib\db                                                                                           |          6 |        217 |         15 |         44 |        276 |
+| src\lib\db\mongo                                                                                     |          3 |        161 |         10 |         27 |        198 |
+| src\lib\db\mongo (Files)                                                                             |          2 |         73 |          3 |         20 |         96 |
+| src\lib\db\mongo\schemas                                                                             |          1 |         88 |          7 |          7 |        102 |
+| src\lib\db\redis                                                                                     |          3 |         56 |          5 |         17 |         78 |
+| src\lib\services                                                                                     |          1 |          0 |         31 |          5 |         36 |
+| src\types                                                                                            |          1 |         25 |          1 |          3 |         29 |
+| src\utils                                                                                            |          1 |         15 |         15 |          7 |         37 |
++------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                             | language           | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| e:\Projects\Nextjs-projects\icstudio\icstudio\.prettierignore                                        | Ignore             |          2 |          1 |          0 |          3 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\.prettierrc                                            | JSON               |          3 |          0 |          1 |          4 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\Dockerfile                                             | Docker             |         20 |         14 |         14 |         48 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\Jenkinsfile                                            | Groovy             |         92 |          8 |         13 |        113 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\README.md                                              | Markdown           |         23 |          0 |         14 |         37 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\components.json                                        | JSON               |         21 |          0 |          0 |         21 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\docker-compose.yml                                     | YAML               |         40 |          0 |          5 |         45 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\eslint.config.mjs                                      | JavaScript         |         12 |          0 |          5 |         17 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\next.config.ts                                         | TypeScript         |          4 |          1 |          3 |          8 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\package-lock.json                                      | JSON               |      5,757 |          0 |          1 |      5,758 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\package.json                                           | JSON               |         79 |          0 |          1 |         80 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\pnpm-lock.yaml                                         | YAML               |      4,623 |          0 |      1,100 |      5,723 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\postcss.config.mjs                                     | JavaScript         |          4 |          0 |          2 |          6 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\public\file.svg                                        | XML                |          1 |          0 |          0 |          1 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\public\globe.svg                                       | XML                |          1 |          0 |          0 |          1 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\public\next.svg                                        | XML                |          1 |          0 |          0 |          1 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\public\vercel.svg                                      | XML                |          1 |          0 |          0 |          1 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\public\window.svg                                      | XML                |          1 |          0 |          0 |          1 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\(auth)\login\page.tsx                          | TypeScript JSX     |        144 |          2 |         17 |        163 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\(auth)\register\page.tsx                       | TypeScript JSX     |        261 |          2 |         26 |        289 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\admin\layout.tsx                               | TypeScript JSX     |          4 |          0 |          1 |          5 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\admin\page.tsx                                 | TypeScript JSX     |          8 |          1 |          2 |         11 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\api\auth\[...nextauth]\route.ts                | TypeScript         |        106 |          4 |         13 |        123 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\api\auth\login\route.ts                        | TypeScript         |         79 |          5 |         12 |         96 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\api\auth\register\route.ts                     | TypeScript         |         98 |          7 |         15 |        120 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\api\auth\user\route.ts                         | TypeScript         |         42 |          0 |          6 |         48 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\api\auth\verify-code\route.ts                  | TypeScript         |         33 |          6 |          7 |         46 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\globals.css                                    | CSS                |        117 |          0 |          6 |        123 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\layout.tsx                                     | TypeScript JSX     |         44 |          3 |          7 |         54 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\page.tsx                                       | TypeScript JSX     |         81 |          9 |         10 |        100 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\providers.tsx                                  | TypeScript JSX     |          5 |          0 |          2 |          7 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\3d-marquee.tsx                          | TypeScript JSX     |         42 |          0 |          3 |         45 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\admin\dashboard.tsx                     | TypeScript JSX     |      1,550 |         10 |         57 |      1,617 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\create-admin.ts                         | TypeScript         |         26 |          0 |          5 |         31 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\layout\admin-layout.tsx                 | TypeScript JSX     |         35 |          0 |          5 |         40 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\layout\header\header.tsx                | TypeScript JSX     |         30 |          0 |          4 |         34 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\layout\header\notification-dropdown.tsx | TypeScript JSX     |         37 |          1 |          2 |         40 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\layout\header\user-nav.tsx              | TypeScript JSX     |         47 |          0 |          3 |         50 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\layout\sidebar\desktop-sidebar.tsx      | TypeScript JSX     |         21 |          0 |          3 |         24 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\layout\sidebar\mobile-sidebar.tsx       | TypeScript JSX     |         26 |          0 |          4 |         30 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\layout\sidebar\nav-link.tsx             | TypeScript JSX     |         35 |          0 |          4 |         39 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\magicui\magic-card.tsx                  | TypeScript JSX     |         97 |          0 |         12 |        109 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\magicui\shine-border.tsx                | TypeScript JSX     |         40 |         17 |          5 |         62 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\main-page\hero-page.tsx                 | TypeScript JSX     |        248 |          0 |         34 |        282 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\main-page\self-introduce.tsx            | TypeScript JSX     |         83 |          0 |         20 |        103 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\mobile-nav.tsx                          | TypeScript JSX     |        131 |          1 |          8 |        140 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\nav.tsx                                 | TypeScript JSX     |        301 |         11 |         19 |        331 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\providers\NextAuthProvider.tsx          | TypeScript JSX     |          5 |          0 |          2 |          7 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\theme-provider.tsx                      | TypeScript JSX     |          9 |          0 |          3 |         12 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\theme-toggle.tsx                        | TypeScript JSX     |         30 |          0 |          5 |         35 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\3d-marquee.tsx                       | TypeScript JSX     |        138 |          1 |          4 |        143 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\animated-testimonials.tsx            | TypeScript JSX     |        162 |          0 |         11 |        173 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\aurora-background.tsx                | TypeScript JSX     |         56 |          1 |          5 |         62 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\avatar.tsx                           | TypeScript JSX     |         47 |          0 |          7 |         54 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\badge.tsx                            | TypeScript JSX     |         41 |          0 |          6 |         47 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\button.tsx                           | TypeScript JSX     |         54 |          0 |          6 |         60 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\card.tsx                             | TypeScript JSX     |         83 |          0 |         10 |         93 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\checkbox.tsx                         | TypeScript JSX     |         28 |          0 |          5 |         33 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\dialog.tsx                           | TypeScript JSX     |        122 |          0 |         14 |        136 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\dropdown-menu.tsx                    | TypeScript JSX     |        239 |          0 |         19 |        258 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\input.tsx                            | TypeScript JSX     |         18 |          0 |          4 |         22 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\label.tsx                            | TypeScript JSX     |         20 |          0 |          5 |         25 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\logo.tsx                             | TypeScript JSX     |         18 |          0 |          4 |         22 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\progress.tsx                         | TypeScript JSX     |         27 |          0 |          5 |         32 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\scroll-area.tsx                      | TypeScript JSX     |         53 |          0 |          6 |         59 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\select.tsx                           | TypeScript JSX     |        172 |          0 |         14 |        186 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\sheet.tsx                            | TypeScript JSX     |        126 |          0 |         14 |        140 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\switch.tsx                           | TypeScript JSX     |         27 |          0 |          5 |         32 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\table.tsx                            | TypeScript JSX     |        105 |          0 |         12 |        117 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\tabs.tsx                             | TypeScript JSX     |         59 |          0 |          8 |         67 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\textarea.tsx                         | TypeScript JSX     |         15 |          0 |          4 |         19 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\config\admin-menu.ts                               | TypeScript         |         34 |          0 |          1 |         35 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\data\introduce.ts                                  | TypeScript         |         42 |          0 |          3 |         45 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\data\navigation.ts                                 | TypeScript         |         43 |          0 |          1 |         44 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\hooks\use-media-query.ts                           | TypeScript         |         15 |          0 |          4 |         19 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\hooks\use-sidebar-menu.ts                          | TypeScript         |          9 |          1 |          3 |         13 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\lib\db\mongo\mongo.ts                              | TypeScript         |         51 |          1 |         14 |         66 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\lib\db\mongo\mongodb.ts                            | TypeScript         |         22 |          2 |          6 |         30 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\lib\db\mongo\schemas\user.ts                       | TypeScript         |         88 |          7 |          7 |        102 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\lib\db\redis\redis.ts                              | TypeScript         |         16 |          0 |          8 |         24 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\lib\db\redis\use-cache.ts                          | TypeScript         |         22 |          1 |          3 |         26 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\lib\db\redis\use-publish.ts                        | TypeScript         |         18 |          4 |          6 |         28 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\lib\services\sms.ts                                | TypeScript         |          0 |         31 |          5 |         36 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\lib\utils.ts                                       | TypeScript         |          5 |          0 |          2 |          7 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\middleware.ts                                      | TypeScript         |         26 |          4 |          6 |         36 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\types\next-auth.d.ts                               | TypeScript         |         25 |          1 |          3 |         29 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\src\utils\auth.ts                                      | TypeScript         |         15 |         15 |          7 |         37 |
+| e:\Projects\Nextjs-projects\icstudio\icstudio\tsconfig.json                                          | JSON with Comments |         27 |          0 |          1 |         28 |
+| Total                                                                                                |                    |     16,568 |        172 |      1,729 |     18,469 |
++------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

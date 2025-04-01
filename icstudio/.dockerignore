@@ -1,0 +1,43 @@
+# 依赖目录
+node_modules
+.pnpm-store
+
+# Next.js 构建输出
+.next
+out
+
+# 开发工具和配置
+.git
+.gitignore
+.env.local
+.env.development
+.env.test
+.eslintrc
+.prettierrc
+README.md
+
+# 调试文件
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# 系统文件
+.DS_Store
+*.pem
+
+# 测试文件
+coverage
+*.test.js
+*.spec.js
+
+# IDE 配置
+.idea
+.vscode
+*.swp
+*.swo
+
+# Docker 文件
+Dockerfile
+docker-compose.yml
+.dockerignore 

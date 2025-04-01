@@ -66,7 +66,7 @@ const Page = () => {
     const [verifyMethod, setVerifyMethod] = useState<"phone" | "email">("phone");
     const [countdown, setCountdown] = useState(0);
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<RegisterForm>({
+    const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm<RegisterForm>({
         resolver: zodResolver(registerSchema),
     });
 
@@ -129,9 +129,10 @@ const Page = () => {
             }
 
             toast.success("注册成功");
-            router.push('/login');
+            router.push('/admin');
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        } catch (error: any) {
+        } catch (error:any) {
+            console.error(error)
             toast.error(error.message || "注册失败");
         }
     };
@@ -158,7 +159,7 @@ const Page = () => {
                                 <div className="space-y-4">
                                     <div className="space-y-2">
                                         <Label>用户类型</Label>
-                                        <Select onValueChange={(value) => register("userType").onChange({ target: { value } })}>
+                                        <Select onValueChange={(value) => setValue("userType", value as "user" | "team")}>
                                             <SelectTrigger>
                                                 <SelectValue placeholder="选择用户类型" />
                                             </SelectTrigger>

@@ -5,7 +5,7 @@ import { Admin, TeamUser, User } from "@/lib/db/mongo/schemas/user"
 import bcrypt from "bcryptjs"
 import { addToCache, getFromCache } from "@/lib/db/redis/use-cache"
 
-const handler = NextAuth({
+export const authOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -94,7 +94,8 @@ const handler = NextAuth({
     error: '/login',
   },
   callbacks: {
-    async jwt({ token, user }) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    async jwt({ token, user }: { token: any; user?: any }) {
       if (user) {
         token.id = user.id
         token.role = user.role
@@ -102,7 +103,8 @@ const handler = NextAuth({
       }
       return token
     },
-    async session({ session, token }) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    async session({ session, token }: { session: any; token: any }) {
       if (session?.user) {
         session.user.id = token.id as string
         session.user.role = token.role as string
@@ -110,7 +112,7 @@ const handler = NextAuth({
       }
       return session
     },
-    async redirect({ url, baseUrl }) {
+    async redirect({ url, baseUrl }: { url: string; baseUrl: string }) {
       console.log("重定向请求:", { url, baseUrl });
       // 确保重定向到正确的路由
       if (url.startsWith(baseUrl)) return url
@@ -118,6 +120,8 @@ const handler = NextAuth({
       return baseUrl
     }
   }
-})
+}
+
+const handler = NextAuth(authOptions)
 
 export { handler as GET, handler as POST } 

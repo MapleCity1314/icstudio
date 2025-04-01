@@ -1,0 +1,90 @@
+"filename", "language", "JSON", "JavaScript", "TypeScript", "YAML", "Docker", "Groovy", "Ignore", "JSON with Comments", "Markdown", "TypeScript JSX", "CSS", "XML", "comment", "blank", "total"
+"e:\Projects\Nextjs-projects\icstudio\icstudio\.prettierignore", "Ignore", 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 0, 3
+"e:\Projects\Nextjs-projects\icstudio\icstudio\.prettierrc", "JSON", 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4
+"e:\Projects\Nextjs-projects\icstudio\icstudio\Dockerfile", "Docker", 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 14, 14, 48
+"e:\Projects\Nextjs-projects\icstudio\icstudio\Jenkinsfile", "Groovy", 0, 0, 0, 0, 0, 92, 0, 0, 0, 0, 0, 0, 8, 13, 113
+"e:\Projects\Nextjs-projects\icstudio\icstudio\README.md", "Markdown", 0, 0, 0, 0, 0, 0, 0, 0, 23, 0, 0, 0, 0, 14, 37
+"e:\Projects\Nextjs-projects\icstudio\icstudio\components.json", "JSON", 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21
+"e:\Projects\Nextjs-projects\icstudio\icstudio\docker-compose.yml", "YAML", 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 45
+"e:\Projects\Nextjs-projects\icstudio\icstudio\eslint.config.mjs", "JavaScript", 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 17
+"e:\Projects\Nextjs-projects\icstudio\icstudio\next.config.ts", "TypeScript", 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 8
+"e:\Projects\Nextjs-projects\icstudio\icstudio\package-lock.json", "JSON", 5757, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5758
+"e:\Projects\Nextjs-projects\icstudio\icstudio\package.json", "JSON", 79, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 80
+"e:\Projects\Nextjs-projects\icstudio\icstudio\pnpm-lock.yaml", "YAML", 0, 0, 0, 4623, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1100, 5723
+"e:\Projects\Nextjs-projects\icstudio\icstudio\postcss.config.mjs", "JavaScript", 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 6
+"e:\Projects\Nextjs-projects\icstudio\icstudio\public\file.svg", "XML", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1
+"e:\Projects\Nextjs-projects\icstudio\icstudio\public\globe.svg", "XML", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1
+"e:\Projects\Nextjs-projects\icstudio\icstudio\public\next.svg", "XML", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1
+"e:\Projects\Nextjs-projects\icstudio\icstudio\public\vercel.svg", "XML", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1
+"e:\Projects\Nextjs-projects\icstudio\icstudio\public\window.svg", "XML", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\(auth)\login\page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 144, 0, 0, 2, 17, 163
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\(auth)\register\page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 261, 0, 0, 2, 26, 289
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\admin\layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 1, 5
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\admin\page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 1, 2, 11
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\api\auth\[...nextauth]\route.ts", "TypeScript", 0, 0, 106, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 13, 123
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\api\auth\login\route.ts", "TypeScript", 0, 0, 79, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 12, 96
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\api\auth\register\route.ts", "TypeScript", 0, 0, 98, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 15, 120
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\api\auth\user\route.ts", "TypeScript", 0, 0, 42, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 48
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\api\auth\verify-code\route.ts", "TypeScript", 0, 0, 33, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 7, 46
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\globals.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 117, 0, 0, 6, 123
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 44, 0, 0, 3, 7, 54
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 81, 0, 0, 9, 10, 100
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\app\providers.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 2, 7
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\3d-marquee.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 42, 0, 0, 0, 3, 45
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\admin\dashboard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 1550, 0, 0, 10, 57, 1617
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\create-admin.ts", "TypeScript", 0, 0, 26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 31
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\layout\admin-layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 35, 0, 0, 0, 5, 40
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\layout\header\header.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 0, 0, 0, 4, 34
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\layout\header\notification-dropdown.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 37, 0, 0, 1, 2, 40
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\layout\header\user-nav.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 47, 0, 0, 0, 3, 50
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\layout\sidebar\desktop-sidebar.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 21, 0, 0, 0, 3, 24
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\layout\sidebar\mobile-sidebar.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 26, 0, 0, 0, 4, 30
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\layout\sidebar\nav-link.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 35, 0, 0, 0, 4, 39
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\magicui\magic-card.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 97, 0, 0, 0, 12, 109
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\magicui\shine-border.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 0, 0, 17, 5, 62
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\main-page\hero-page.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 248, 0, 0, 0, 34, 282
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\main-page\self-introduce.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 83, 0, 0, 0, 20, 103
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\mobile-nav.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 131, 0, 0, 1, 8, 140
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\nav.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 301, 0, 0, 11, 19, 331
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\providers\NextAuthProvider.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 2, 7
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\theme-provider.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 3, 12
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\theme-toggle.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 0, 0, 0, 5, 35
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\3d-marquee.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 138, 0, 0, 1, 4, 143
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\animated-testimonials.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 162, 0, 0, 0, 11, 173
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\aurora-background.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 56, 0, 0, 1, 5, 62
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\avatar.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 47, 0, 0, 0, 7, 54
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\badge.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 41, 0, 0, 0, 6, 47
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\button.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 54, 0, 0, 0, 6, 60
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\card.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 83, 0, 0, 0, 10, 93
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\checkbox.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 28, 0, 0, 0, 5, 33
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\dialog.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 122, 0, 0, 0, 14, 136
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\dropdown-menu.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 239, 0, 0, 0, 19, 258
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\input.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 0, 0, 0, 4, 22
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\label.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 5, 25
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\logo.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 0, 0, 0, 4, 22
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\progress.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 27, 0, 0, 0, 5, 32
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\scroll-area.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 53, 0, 0, 0, 6, 59
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\select.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 172, 0, 0, 0, 14, 186
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\sheet.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 126, 0, 0, 0, 14, 140
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\switch.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 27, 0, 0, 0, 5, 32
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\table.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 105, 0, 0, 0, 12, 117
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\tabs.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0, 0, 0, 8, 67
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\components\ui\textarea.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 4, 19
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\config\admin-menu.ts", "TypeScript", 0, 0, 34, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 35
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\data\introduce.ts", "TypeScript", 0, 0, 42, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 45
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\data\navigation.ts", "TypeScript", 0, 0, 43, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 44
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\hooks\use-media-query.ts", "TypeScript", 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 19
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\hooks\use-sidebar-menu.ts", "TypeScript", 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 13
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\lib\db\mongo\mongo.ts", "TypeScript", 0, 0, 51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 14, 66
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\lib\db\mongo\mongodb.ts", "TypeScript", 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 6, 30
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\lib\db\mongo\schemas\user.ts", "TypeScript", 0, 0, 88, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 102
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\lib\db\redis\redis.ts", "TypeScript", 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 24
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\lib\db\redis\use-cache.ts", "TypeScript", 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 26
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\lib\db\redis\use-publish.ts", "TypeScript", 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 6, 28
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\lib\services\sms.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31, 5, 36
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\lib\utils.ts", "TypeScript", 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 7
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\middleware.ts", "TypeScript", 0, 0, 26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 6, 36
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\types\next-auth.d.ts", "TypeScript", 0, 0, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 29
+"e:\Projects\Nextjs-projects\icstudio\icstudio\src\utils\auth.ts", "TypeScript", 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 7, 37
+"e:\Projects\Nextjs-projects\icstudio\icstudio\tsconfig.json", "JSON with Comments", 0, 0, 0, 0, 0, 0, 0, 27, 0, 0, 0, 0, 0, 1, 28
+"Total", "-", 5860, 16, 819, 4663, 20, 92, 2, 27, 23, 4924, 117, 5, 172, 1729, 18469

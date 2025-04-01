@@ -35,7 +35,7 @@ const LoginForm = () => {
     const { theme } = useTheme();
     const router = useRouter();
     const searchParams = useSearchParams();
-    const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+    const callbackUrl = searchParams.get("callbackUrl") || "/admin";
 
     const { register, handleSubmit, formState: { errors } } = useForm<LoginForm>({
         resolver: zodResolver(loginSchema),

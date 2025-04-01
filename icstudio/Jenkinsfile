@@ -1,0 +1,113 @@
+pipeline {
+    agent any
+    
+    environment {
+        DOCKER_REGISTRY = 'your-registry-url'
+        IMAGE_NAME = 'icstudio'
+        IMAGE_TAG = "${env.BUILD_NUMBER}"
+        DOCKER_CREDENTIALS = credentials('docker-credentials-id')
+        SSH_CREDENTIALS = credentials('ssh-credentials-id')
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install -g pnpm'
+                sh 'pnpm install --frozen-lockfile'
+            }
+        }
+        
+        stage('Lint & Test') {
+            steps {
+                sh 'pnpm lint'
+                // 添加测试命令（如果有）
+                // sh 'pnpm test'
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                sh 'pnpm build'
+            }
+        }
+        
+        stage('Docker Build & Push') {
+            steps {
+                script {
+                    // 登录 Docker 仓库
+                    sh "echo $DOCKER_CREDENTIALS_PSW | docker login $DOCKER_REGISTRY -u $DOCKER_CREDENTIALS_USR --password-stdin"
+                    
+                    // 构建镜像
+                    sh "docker build -t $DOCKER_REGISTRY/$IMAGE_NAME:$IMAGE_TAG ."
+                    sh "docker tag $DOCKER_REGISTRY/$IMAGE_NAME:$IMAGE_TAG $DOCKER_REGISTRY/$IMAGE_NAME:latest"
+                    
+                    // 推送镜像
+                    sh "docker push $DOCKER_REGISTRY/$IMAGE_NAME:$IMAGE_TAG"
+                    sh "docker push $DOCKER_REGISTRY/$IMAGE_NAME:latest"
+                }
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                script {
+                    // 准备部署脚本
+                    def deployScript = """
+                        cd /opt/icstudio
+                        docker-compose pull
+                        docker-compose up -d
+                        docker image prune -f
+                    """
+                    
+                    // 通过 SSH 执行部署
+                    sshagent(credentials: ['ssh-credentials-id']) {
+                        sh """
+                            ssh -o StrictHostKeyChecking=no $SSH_CREDENTIALS_USR@your-server '${deployScript}'
+                        """
+                    }
+                }
+            }
+        }
+    }
+    
+    post {
+        success {
+            dingtalk (
+                robot: 'dingding-notification-id',
+                type: 'TEXT',
+                text: [
+                    "部署成功！",
+                    "项目：${env.JOB_NAME}",
+                    "构建编号：${env.BUILD_NUMBER}",
+                    "触发者：${env.CHANGE_AUTHOR}",
+                    "构建详情：${env.BUILD_URL}"
+                ]
+            )
+        }
+        
+        failure {
+            dingtalk (
+                robot: 'dingding-notification-id',
+                type: 'TEXT',
+                text: [
+                    "部署失败！",
+                    "项目：${env.JOB_NAME}",
+                    "构建编号：${env.BUILD_NUMBER}",
+                    "触发者：${env.CHANGE_AUTHOR}",
+                    "构建详情：${env.BUILD_URL}"
+                ]
+            )
+        }
+        
+        always {
+            // 清理工作区
+            cleanWs()
+        }
+    }
+} 

@@ -19,6 +19,8 @@ import {
 import { MagicCard } from "@/components/magicui/magic-card";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
+import Link from "next/link";
+import { Suspense } from "react";
 
 const loginSchema = z.object({
     identifier: z.string().min(1, "请输入用户名/手机号/邮箱"),
@@ -28,7 +30,8 @@ const loginSchema = z.object({
 
 type LoginForm = z.infer<typeof loginSchema>;
 
-const Page = () => {
+// 登录表单组件
+const LoginForm = () => {
     const { theme } = useTheme();
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -132,9 +135,9 @@ const Page = () => {
                         <CardFooter className="justify-center pb-8">
                             <p className="text-sm">
                                 还没有账号？{" "}
-                                <a href="/register" className="text-blue-500 hover:text-blue-600 font-medium">
+                                <Link href="/register" className="text-blue-500 hover:text-blue-600 font-medium">
                                     立即注册
-                                </a>
+                                </Link>
                             </p>
                         </CardFooter>
                     </MagicCard>
@@ -142,6 +145,19 @@ const Page = () => {
             </div>
         </div>
     );
-}
+};
+
+// 主页面组件
+const Page = () => {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen w-full flex items-center justify-center">
+                <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
+            </div>
+        }>
+            <LoginForm />
+        </Suspense>
+    );
+};
 
 export default Page; 

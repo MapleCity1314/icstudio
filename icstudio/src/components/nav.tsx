@@ -100,7 +100,7 @@ const Nav = () => {
                                                 className="flex items-center"
                                           >
                                                 <Image
-                                                      src="/logo/logo-t.png"
+                                                      src="/logo/logo-t.svg"
                                                       alt="Logo"
                                                       width={
                                                             scrolled ? 130 : 160
@@ -125,34 +125,36 @@ const Nav = () => {
                                                             key={item.title}
                                                             className="relative group"
                                                       >
-                                                            <button
-                                                                  onClick={() =>
-                                                                        item.children &&
-                                                                        toggleDropdown(
-                                                                              item.title,
-                                                                        )
-                                                                  }
-                                                                  className="flex items-center text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors relative group"
-                                                            >
-                                                                  <span
-                                                                        className={`${scrolled ? "text-sm" : "text-base"} transition-all duration-300 font-medium`}
+                                                            {item.children ? (
+                                                                  <button
+                                                                        onClick={() => toggleDropdown(item.title)}
+                                                                        className="flex items-center text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors relative group"
                                                                   >
-                                                                        {
-                                                                              item.title
-                                                                        }
-                                                                  </span>
-                                                                  {item.children && (
+                                                                        <span
+                                                                              className={`${scrolled ? "text-sm" : "text-base"} transition-all duration-300 font-medium`}
+                                                                        >
+                                                                              {item.title}
+                                                                        </span>
                                                                         <ChevronDownIcon
                                                                               className={`w-4 h-4 ml-1 transition-transform duration-200 ease-in-out ${
-                                                                                    openDropdown ===
-                                                                                    item.title
-                                                                                          ? "rotate-180"
-                                                                                          : ""
+                                                                                    openDropdown === item.title ? "rotate-180" : ""
                                                                               }`}
                                                                         />
-                                                                  )}
-                                                                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-500 transition-all group-hover:w-full" />
-                                                            </button>
+                                                                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-500 transition-all group-hover:w-full" />
+                                                                  </button>
+                                                            ) : (
+                                                                  <Link
+                                                                        href={item.href}
+                                                                        className="flex items-center text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors relative group"
+                                                                  >
+                                                                        <span
+                                                                              className={`${scrolled ? "text-sm" : "text-base"} transition-all duration-300 font-medium`}
+                                                                        >
+                                                                              {item.title}
+                                                                        </span>
+                                                                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-500 transition-all group-hover:w-full" />
+                                                                  </Link>
+                                                            )}
 
                                                             {item.children && (
                                                                   <div
@@ -272,7 +274,7 @@ const Nav = () => {
                                                                         )}
                                                                         <DropdownMenuItem>
                                                                               <Link
-                                                                                    href="/profile"
+                                                                                    href="/home/profile"
                                                                                     className="w-full"
                                                                               >
                                                                                     个人信息
@@ -328,4 +330,4 @@ const Nav = () => {
       );
 };
 
-export default Nav; 
+export default Nav;

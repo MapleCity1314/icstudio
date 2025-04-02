@@ -4,8 +4,8 @@ import mongoose from 'mongoose';
 const baseUserSchema = new mongoose.Schema({
     username: { 
         type: String, 
-        required: true,
-        unique: true,
+        required: true,  
+        unique: true, 
         trim: true,
         minlength: 2
     },

@@ -4,10 +4,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { NextAuthProvider } from "@/components/providers/NextAuthProvider";
 import { Toaster } from "sonner";
-// import "@icon-park/react/styles/index.css";
-// import { IconProvider, DEFAULT_ICON_CONFIGS } from "@icon-park/react";
-
-// const IconConfig = { ...DEFAULT_ICON_CONFIGS, prefix: "icon" };
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

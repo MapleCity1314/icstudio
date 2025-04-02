@@ -34,11 +34,11 @@ export const navItems: NavItem[] = [
     ],
   },
   {
-    title: "发展历程",
-    href: "/history",
+    title: "Loome",
+    href: "/loome",
   },
   {
     title: "联系我们",
-    href: "/contact",
+    href: "/home/aboutus",
   },
 ]; 

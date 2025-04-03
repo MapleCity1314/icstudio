@@ -21,7 +21,8 @@ import {
       DropdownMenuSeparator,
       DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useSession, signOut } from "next-auth/react";
+import { signOut } from "next-auth/react";
+import { useSession } from "@/hooks/use-session";
 import { useRouter } from "next/navigation";
 
 const Nav = () => {

@@ -4,7 +4,8 @@ import {
   Settings,
   FileText,
   Mail,
-  UserPlus
+  UserPlus,
+  Home
 } from "lucide-react"
 
 export const adminMenuItems = [
@@ -38,5 +39,10 @@ export const adminMenuItems = [
     href: "/admin/invite",
     icon: UserPlus,
     role: "admin"
+  },
+  {
+    title: "返回首页",
+    href: "/home",
+    icon: Home
   }
 ] 

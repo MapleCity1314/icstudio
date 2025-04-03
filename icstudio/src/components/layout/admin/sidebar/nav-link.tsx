@@ -12,9 +12,10 @@ interface NavLinkProps {
     icon: LucideIcon
   }
   onClick?: () => void
+  isCollapsed?: boolean
 }
 
-export function NavLink({ item, onClick }: NavLinkProps) {
+export function NavLink({ item, onClick, isCollapsed }: NavLinkProps) {
   const pathname = usePathname()
   const isActive = pathname === item.href || pathname?.startsWith(`${item.href}/`)
 
@@ -23,7 +24,8 @@ export function NavLink({ item, onClick }: NavLinkProps) {
       href={item.href}
       onClick={onClick}
       className={cn(
-        "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all hover:bg-accent",
+        "flex items-center rounded-lg py-2 text-sm font-medium transition-all hover:bg-accent",
+        isCollapsed ? "justify-center px-2" : "gap-3 px-3",
         isActive 
           ? "bg-accent text-accent-foreground" 
           : "text-muted-foreground hover:text-foreground"
@@ -33,7 +35,7 @@ export function NavLink({ item, onClick }: NavLinkProps) {
         "h-4 w-4",
         isActive ? "text-foreground" : "text-muted-foreground"
       )} />
-      {item.title}
+      {!isCollapsed && item.title}
     </Link>
   )
-} 
+}

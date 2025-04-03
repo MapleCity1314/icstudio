@@ -123,7 +123,8 @@ export default function InvitePage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {inviteCodes.map((item: any) => (
+                {// eslint-disable-next-line @typescript-eslint/no-explicit-any
+                inviteCodes.map((item: any) => (
                   <TableRow key={item.code}>
                     <TableCell className="font-mono">{item.code}</TableCell>
                     <TableCell>

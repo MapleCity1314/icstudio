@@ -9,7 +9,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { useSession, signOut } from "next-auth/react"
+import { signOut } from "next-auth/react"
+import { useSession } from "@/hooks/use-session"
 import { User, Settings, LogOut } from "lucide-react"
 
 export function UserNav() {
@@ -47,4 +48,4 @@ export function UserNav() {
       </DropdownMenuContent>
     </DropdownMenu>
   )
-} 
+}

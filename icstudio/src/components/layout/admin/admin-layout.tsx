@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import DesktopSidebar from "./sidebar/desktop-sidebar"
 import MobileSidebar from "./sidebar/mobile-sidebar"
@@ -12,7 +12,21 @@ export default function AdminLayout({
   children: React.ReactNode
 }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [isCollapsed, setIsCollapsed] = useState(false)
   const isMobile = useMediaQuery("(max-width: 768px)")
+
+  useEffect(() => {
+    const savedCollapsed = localStorage.getItem("sidebarCollapsed")
+    if (savedCollapsed) {
+      setIsCollapsed(JSON.parse(savedCollapsed))
+    }
+  }, [])
+
+  const toggleCollapsed = () => {
+    const newCollapsed = !isCollapsed
+    setIsCollapsed(newCollapsed)
+    localStorage.setItem("sidebarCollapsed", JSON.stringify(newCollapsed))
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -22,10 +36,10 @@ export default function AdminLayout({
           onClose={() => setIsSidebarOpen(false)} 
         />
       ) : (
-        <DesktopSidebar />
+        <DesktopSidebar isCollapsed={isCollapsed} onToggleCollapse={toggleCollapsed} />
       )}
       
-      <div className="flex flex-col lg:ml-64">
+      <div className={`flex flex-col ${isMobile ? "" : (isCollapsed ? "lg:ml-16" : "lg:ml-64")} transition-[margin] duration-300`}>
         <Header 
           onMenuClick={() => setIsSidebarOpen(true)}
           isMobile={isMobile}

@@ -23,17 +23,18 @@ export default function StarryBackground() {
 
     // 设置canvas尺寸为全屏
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+      // 使用 window.innerWidth 和 window.innerHeight 确保覆盖整个视口
+      canvas.width = window.innerWidth + 20 // 添加额外宽度确保覆盖
+      canvas.height = window.innerHeight + 20 // 添加额外高度确保覆盖
     }
     resizeCanvas()
     window.addEventListener("resize", resizeCanvas)
 
     // 生成随机星星
-    const stars: Star[] = Array.from({ length: 100 }, () => ({
+    const stars: Star[] = Array.from({ length: 200 }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      size: Math.random() * 2,
+      size: Math.random() * 2 + 0.1, // 确保星星至少有一些大小
       speed: Math.random() * 0.5 + 0.1,
     }))
 
@@ -44,8 +45,8 @@ export default function StarryBackground() {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       // 根据主题设置星星颜色
-      ctx.fillStyle = theme === "dark" ? "#ffffff" : "#000000"
-      ctx.globalAlpha = theme === "dark" ? 0.8 : 0.5
+      ctx.fillStyle = "#ffffff" // 总是使用白色星星，更符合夜空效果
+      ctx.globalAlpha = 0.8
 
       // 更新和绘制星星
       stars.forEach((star) => {
@@ -70,8 +71,16 @@ export default function StarryBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full -z-10"
-      style={{ pointerEvents: "none" }}
+      className="pointer-events-none"
+      style={{ 
+        zIndex: -1,  // 确保在内容之下
+        position: "absolute", // 使用absolute定位
+        top: "-10px", // 延伸超出容器确保完全覆盖
+        left: "-10px", // 延伸超出容器确保完全覆盖
+        width: "calc(100% + 20px)", // 宽度多10px确保覆盖
+        height: "calc(100% + 20px)", // 高度多10px确保覆盖
+        background: "linear-gradient(to bottom, #0f172a, #1e1b4b)" // 深色渐变背景
+      }}
     />
   )
 }

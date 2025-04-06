@@ -32,3 +32,22 @@ export async function POST(request: Request) {
             );
       }
 }
+
+export async function GET() {
+      try {
+            await dbConnect();
+
+            const feedbacks = await Feedback.find({}); // 获取所有反馈
+
+            return NextResponse.json(
+                  { message: "获取反馈列表成功", feedbacks },
+                  { status: 200 }
+            );
+      } catch (error) {
+            console.error("获取反馈列表时出错:", error);
+            return NextResponse.json(
+                  { error: "服务器内部错误" },
+                  { status: 500 }
+            );
+      }
+} 

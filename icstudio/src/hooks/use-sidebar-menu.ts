@@ -1,6 +1,6 @@
 "use client"
 
-import { adminMenuItems } from "@/config/admin-menu"
+import { adminMenuItems } from "@/config/menu/admin-menu"
 import { useSession } from "next-auth/react"
 
 export function useSidebarMenu() {

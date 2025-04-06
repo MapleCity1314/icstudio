@@ -1,0 +1,141 @@
+.markdown {
+  color: #e1e4e8;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 {
+  font-weight: 600;
+  line-height: 1.25;
+  margin-top: 1.5em;
+  margin-bottom: 1em;
+}
+
+.markdown h1 {
+  font-size: 2em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #30363d;
+}
+
+.markdown h2 {
+  font-size: 1.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #30363d;
+}
+
+.markdown h3 {
+  font-size: 1.25em;
+}
+
+.markdown h4 {
+  font-size: 1em;
+}
+
+.markdown h5 {
+  font-size: 0.875em;
+}
+
+.markdown h6 {
+  font-size: 0.85em;
+  color: #8b949e;
+}
+
+.markdown p {
+  margin-top: 0;
+}
+
+.markdown blockquote {
+  margin: 0;
+  padding: 0 1em;
+  color: #8b949e;
+  border-left: 0.25em solid #30363d;
+}
+
+.markdown ul, .markdown ol {
+  margin-top: 0;
+  margin-bottom: 1em;
+  padding-left: 2em;
+}
+
+.markdown li {
+  margin: 0.25em 0;
+}
+
+.markdown code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 85%;
+  padding: 0.2em 0.4em;
+  margin: 0;
+  background-color: rgba(240, 246, 252, 0.15);
+  border-radius: 3px;
+}
+
+.markdown pre {
+  margin-top: 0;
+  margin-bottom: 1em;
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #161b22;
+  border-radius: 6px;
+}
+
+.markdown pre code {
+  display: inline;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown a {
+  color: #58a6ff;
+  text-decoration: none;
+}
+
+.markdown a:hover {
+  text-decoration: underline;
+}
+
+.markdown img {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.markdown hr {
+  height: 0.25em;
+  padding: 0;
+  margin: 24px 0;
+  background-color: #30363d;
+  border: 0;
+}
+
+.markdown table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.markdown table th {
+  font-weight: 600;
+}
+
+.markdown table th, .markdown table td {
+  padding: 6px 13px;
+  border: 1px solid #30363d;
+}
+
+.markdown table tr {
+  background-color: #0d1117;
+  border-top: 1px solid #30363d;
+}
+
+.markdown table tr:nth-child(2n) {
+  background-color: #161b22;
+}

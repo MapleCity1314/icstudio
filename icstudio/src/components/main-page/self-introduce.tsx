@@ -3,7 +3,7 @@
 import React from "react";
 import { AnimatedTestimonials } from "../ui/animated-testimonials";
 import { StarryBackground } from "../ui/starry-background";
-import { team } from "@/data/introduce";
+import { team } from "@/config/data/introduce";
 
 export const AnimatedTestimonialsDemo = () => {
   return (

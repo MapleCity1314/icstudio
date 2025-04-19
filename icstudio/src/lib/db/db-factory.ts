@@ -5,7 +5,7 @@ import MongoClient from './mongo';
 
 /**
  * 数据库服务工厂类
- * @description 负责创建和管理所有模型服务实例，采用单例模式确保全局只有一个实例
+ * @description 负责创建和管理所有模型服务实例
  */
 export class DbServiceFactory implements IDbServiceFactory {
   private static instance: DbServiceFactory;

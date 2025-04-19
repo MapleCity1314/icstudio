@@ -255,7 +255,7 @@ export function HeroSection() {
   return (
     <HeroBg
       minRadius={200}
-      maxRadius={400}
+      maxRadius={300}
       speedFactor={1.8} 
       colors={['#836FFF', '#15F5BA', '#69F2FF']}
     >

@@ -1,4 +1,4 @@
-import { Document, Model, Connection, FilterQuery, UpdateQuery, QueryOptions, PipelineStage } from 'mongoose';
+import { Document, Model, FilterQuery, UpdateQuery, QueryOptions, PipelineStage, UpdateWithAggregationPipeline, MongooseQueryOptions } from 'mongoose';
 import { DBResponse, IModelService, PaginationOptions, PaginatedResult } from './types';
 
 /**
@@ -80,7 +80,7 @@ export class ModelService<T, TDoc extends Document = Document & T> implements IM
       const created = await this.model.insertMany(data);
       return this.createResponse(
         true,
-        created.map(doc => doc.toObject() as T),
+        created.map(doc => (doc as unknown as Document).toObject ? (doc as unknown as Document).toObject() as T : doc as unknown as T),
         undefined,
         `${created.length}个文档创建成功`
       );
@@ -279,11 +279,15 @@ export class ModelService<T, TDoc extends Document = Document & T> implements IM
    */
   public async updateMany(
     filter: FilterQuery<TDoc>,
-    update: UpdateQuery<TDoc>,
+    update: UpdateQuery<TDoc> | UpdateWithAggregationPipeline,
     options?: QueryOptions
   ): Promise<DBResponse<number>> {
     try {
-      const result = await this.model.updateMany(filter, update, options).exec();
+      const result = await this.model.updateMany(
+        filter, 
+        update as UpdateQuery<TDoc>, 
+        options as MongooseQueryOptions
+      ).exec();
       return this.createResponse(
         true,
         result.modifiedCount,

@@ -1,10 +1,5 @@
 {
-  "name": "root",
-  "private": true,
-  "scripts": {
-    "dev:icstudio":"pnpm -F icstudio dev",
-    "build:icstudio":"pnpm -F icstudio build",
-    "start:icstudio":"pnpm -F icstudio start",
-    "lint:icstudio":"pnpm -F icstudio lint"
-  }
+	"dependencies": {
+		"@radix-ui/react-toast": "^1.2.8"
+	}
 }

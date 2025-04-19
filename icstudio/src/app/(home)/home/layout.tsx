@@ -1,5 +1,6 @@
 import { ReactNode } from "react"
 
+
 const HomeLayout = ({
         children
 }: {
@@ -7,7 +8,9 @@ const HomeLayout = ({
 }) => {
         return (
                 <div>
-                        { children }
+                        
+                                { children }
+                        
                 </div>
         )
 }

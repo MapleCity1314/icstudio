@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import CreativeSection from "./_sections/creative-section";
 import { HeroSection } from "./_sections/hero-section";
 import { CurvedNavigation } from "./_components/navigation";
@@ -19,6 +19,7 @@ if (typeof window !== 'undefined') {
 const Page = () => {
 
       const { setTheme } = useTheme()
+      const [mounted, setMounted] = useState(false)
       // 设置滚动平滑并刷新ScrollTrigger
       useEffect(() => {
             // 优化滚动性能
@@ -48,7 +49,10 @@ const Page = () => {
 
       useEffect(() => {
             setTheme("dark")
-      }, [])
+            setMounted(true)
+      }, [setTheme,mounted])
+
+      if(!mounted) return null
       
       return (
             <main className="relative">

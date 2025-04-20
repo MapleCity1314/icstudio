@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import React,{ useEffect, useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import gsap from 'gsap';
@@ -162,7 +162,7 @@ const TechIcons = {
       ),
 };
 
-const CreativeSection = () => {
+const CreativeSection = React.memo(() => {
       const sectionRef = useRef<HTMLDivElement>(null);
       const containerRef = useRef<HTMLDivElement>(null);
       const titleRef = useRef<HTMLHeadingElement>(null);
@@ -372,7 +372,7 @@ const CreativeSection = () => {
                                     {/* GridDistortion 区域 */}
                                     <div className="flex items-center justify-center w-full h-[400px] relative rounded-3xl overflow-hidden my-12 mx-auto">
                                           <GridDistortion
-                                                imageSrc="/bg/background.jpg"
+                                                imageSrc="/bg/background.webp"
                                                 grid={10}
                                                 mouse={0.1}
                                                 strength={0.15}
@@ -447,6 +447,8 @@ const CreativeSection = () => {
                   </section>
             </>
       );
-};
+});
+
+CreativeSection.displayName = "CreativeSection"
 
 export default CreativeSection;

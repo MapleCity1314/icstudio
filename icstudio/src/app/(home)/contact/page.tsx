@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation"
 import { useAnimation } from "framer-motion"
 import ModeSelector from "./components/ModeSelector"
 import ContactForm from "./components/ContactForm"
+import { ensureDbConnection } from "@/lib/db/init-db"
 
 type ContactMode = "collaborate" | "join" | "message"
 
@@ -42,6 +43,19 @@ const ContactPage: React.FC = () => {
   useEffect(() => {
     setTheme("light")
   }, [setTheme])
+
+  // 初始化数据库连接
+  useEffect(() => {
+    const initDb = async () => {
+      try {
+        await ensureDbConnection()
+      } catch (error) {
+        console.error("初始化数据库连接失败:", error)
+        // 不阻止页面渲染，useDB会处理错误状态
+      }
+    }
+    initDb()
+  }, [])
 
   return (
     <>

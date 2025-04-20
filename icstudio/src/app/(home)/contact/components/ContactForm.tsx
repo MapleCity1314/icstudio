@@ -6,8 +6,9 @@ import { Send } from "lucide-react"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { FormInput } from "@/components/ui/form-input"
-import { submitContactForm } from "../actions"
 import { toast } from "@/components/ui/use-toast"
+import { useDB, DBConnectionStatus } from "@/hooks/use-db"
+import { FEEDBACK_MODEL_NAME, feedbackSchema } from "@/lib/db/schema/feedback"
 
 type ContactMode = "collaborate" | "join" | "message"
 
@@ -59,6 +60,14 @@ interface FormData {
   portfolio?: string // 仅用于加入模式
 }
 
+// API响应接口
+interface ApiResponse {
+  success: boolean
+  message: string
+  remaining?: number
+  data?: unknown
+}
+
 // 错误对象接口
 interface FormErrors {
   name?: string
@@ -72,6 +81,13 @@ interface FormErrors {
 }
 
 const ContactForm = ({ mode }: ContactFormProps) => {
+  // 获取DB服务
+  const { 
+    registerSchema, 
+    connectionStatus, 
+    error: dbError 
+  } = useDB();
+
   // 表单状态
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -94,21 +110,20 @@ const ContactForm = ({ mode }: ContactFormProps) => {
   const sendButtonRef = useRef<HTMLButtonElement>(null)
   const planeRef = useRef<SVGSVGElement | null>(null)
 
+  // 注册Schema
+  useEffect(() => {
+    registerSchema(FEEDBACK_MODEL_NAME, feedbackSchema);
+  }, [registerSchema]);
+
   // 获取初始剩余提交次数
   useEffect(() => {
     const fetchRemainingSubmissions = async () => {
       try {
-        // 一个简单的请求来检查剩余提交次数
-        const testData = {
-          name: "",
-          email: "",
-          message: "",
-          mode: mode
-        }
+        const response = await fetch('/api/contact')
+        const data = await response.json() as ApiResponse
         
-        const response = await submitContactForm(testData)
-        if (response.remaining !== undefined) {
-          setRemainingSubmissions(response.remaining)
+        if (data.remaining !== undefined) {
+          setRemainingSubmissions(data.remaining)
         }
       } catch (error) {
         console.error("获取剩余提交次数失败:", error)
@@ -117,6 +132,18 @@ const ContactForm = ({ mode }: ContactFormProps) => {
 
     fetchRemainingSubmissions()
   }, [mode])
+
+  // 监听数据库连接状态
+  useEffect(() => {
+    if (connectionStatus === DBConnectionStatus.ERROR && dbError) {
+      console.error("数据库连接错误:", dbError);
+      toast({
+        title: "数据库连接错误",
+        description: "无法连接到数据库，请稍后再试",
+        variant: "destructive",
+      });
+    }
+  }, [connectionStatus, dbError]);
 
   // 验证表单字段
   const validateField = (name: string, value: string): string | undefined => {
@@ -209,7 +236,7 @@ const ContactForm = ({ mode }: ContactFormProps) => {
     setFormError(null)
 
     try {
-      // 根据不同的模式构建不同的提交数据
+      // 准备提交数据
       const submitData = {
         name: formData.name,
         email: formData.email,
@@ -225,21 +252,30 @@ const ContactForm = ({ mode }: ContactFormProps) => {
         })
       }
 
-      // 调用服务器端Action
-      const response = await submitContactForm(submitData)
+      // 使用fetch API提交数据到新的API端点
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submitData),
+      })
+      
+      const data = await response.json() as ApiResponse
       
       // 更新剩余提交次数
-      if (response.remaining !== undefined) {
-        setRemainingSubmissions(response.remaining)
+      if (data.remaining !== undefined) {
+        setRemainingSubmissions(data.remaining)
       }
       
-      if (response.success) {
+      if (data.success) {
+        // 表单提交成功
         setIsSubmitted(true)
         
         // 显示成功提示
         toast({
           title: "提交成功",
-          description: `${response.message}${response.remaining !== undefined ? `，今日还可提交${response.remaining}次` : ''}`,
+          description: `${data.message}${data.remaining !== undefined ? `，今日还可提交${data.remaining}次` : ''}`,
         })
         
         // 3秒后重置表单
@@ -258,10 +294,10 @@ const ContactForm = ({ mode }: ContactFormProps) => {
         }, 3000)
       } else {
         // 显示错误信息
-        setFormError(response.message)
+        setFormError(data.message)
         toast({
           title: "提交失败",
-          description: response.message,
+          description: data.message,
           variant: "destructive",
         })
       }
@@ -351,6 +387,12 @@ const ContactForm = ({ mode }: ContactFormProps) => {
               {formError && (
                 <div className="bg-red-50 text-red-500 p-4 mb-6 rounded-md">
                   {formError}
+                </div>
+              )}
+              
+              {connectionStatus === DBConnectionStatus.ERROR && (
+                <div className="bg-yellow-50 text-yellow-500 p-4 mb-6 rounded-md">
+                  数据库连接错误，您的表单将通过备用系统提交
                 </div>
               )}
               

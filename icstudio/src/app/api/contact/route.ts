@@ -1,5 +1,4 @@
-'use server'
-
+import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 import { dbFactory } from '@/lib/db/db-factory'
 import { 
@@ -12,6 +11,7 @@ import {
   ICollaborateFeedback,
   IMessageFeedback
 } from '@/lib/db/schema/feedback'
+import { ensureDbConnection } from '@/lib/db/init-db'
 
 // 注册Schema
 dbFactory.registerSchema(FEEDBACK_MODEL_NAME, feedbackSchema)
@@ -33,6 +33,7 @@ interface ApiResponse {
   success: boolean
   message: string
   remaining?: number
+  data?: unknown
 }
 
 /**
@@ -132,62 +133,74 @@ function mapFormDataToDbData(data: FormData): Partial<IFeedback> {
 }
 
 /**
- * 处理联系表单提交
- * @param {FormData} data - 表单数据
- * @returns {Promise<ApiResponse>} 表单处理响应
+ * 验证反馈数据
  */
-export async function submitContactForm(data: FormData): Promise<ApiResponse> {
+function validateFeedbackData(data: FormData): { isValid: boolean; errors: string[] } {
+  const errors: string[] = []
+
+  // 验证必填字段
+  if (!data.name) errors.push('缺少姓名字段')
+  if (!data.email) errors.push('缺少邮箱字段')
+  if (!data.message) errors.push('缺少消息字段')
+  
+  // 验证邮箱格式
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  if (data.email && !emailRegex.test(data.email)) errors.push('邮箱格式不正确')
+  
+  // 根据类型验证特有字段
+  if (data.mode === 'join' && !data.phone) {
+    errors.push('加入类型必须提供电话')
+  }
+
+  return {
+    isValid: errors.length === 0,
+    errors
+  }
+}
+
+/**
+ * 处理POST请求
+ */
+export async function POST(request: NextRequest): Promise<NextResponse<ApiResponse>> {
   try {
     // 检查提交限制
     const { canSubmit, remaining } = await checkSubmitLimit()
     
+    // 获取表单数据
+    const data = await request.json() as FormData
+    
     // 如果是空表单（用于检查剩余次数），则直接返回
     if (!data.name && !data.email && !data.message) {
-      return {
+      return NextResponse.json({
         success: false,
         message: '表单验证失败',
         remaining
-      }
+      });
     }
     
     if (!canSubmit) {
-      return {
+      return NextResponse.json({
         success: false,
         message: '您今天的提交次数已达上限，请明天再试',
         remaining: 0
-      }
+      });
     }
     
-    // 验证必填字段
-    if (!data.name || !data.email || !data.message) {
-      return {
+    // 验证表单数据
+    const { isValid, errors } = validateFeedbackData(data)
+    if (!isValid) {
+      return NextResponse.json({
         success: false,
-        message: '请填写所有必填字段',
+        message: errors.join(', '),
         remaining
-      }
-    }
-
-    // 验证邮箱格式
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(data.email)) {
-      return {
-        success: false,
-        message: '请输入有效的邮箱地址',
-        remaining
-      }
-    }
-
-    // 模式特定验证
-    if (data.mode === 'join' && !data.phone) {
-      return {
-        success: false,
-        message: '加入团队需要提供电话号码',
-        remaining
-      }
+      });
     }
 
     // 实际的表单提交逻辑
     try {
+      // 确保数据库已连接
+      await ensureDbConnection();
+      
       // 获取反馈服务
       const feedbackService = dbFactory.getService<IFeedback>(FEEDBACK_MODEL_NAME)
       
@@ -201,37 +214,57 @@ export async function submitContactForm(data: FormData): Promise<ApiResponse> {
         throw new Error(result.message || '保存反馈失败')
       }
       
-      // 模拟API处理延迟
-      await new Promise(resolve => setTimeout(resolve, 500))
-      
       // 成功后更新提交计数
       await updateSubmitCount()
       
       // 计算剩余提交次数
       const updatedRemaining = remaining - 1
       
-      return {
+      return NextResponse.json({
         success: true,
         message: '表单提交成功',
-        remaining: updatedRemaining
-      }
+        remaining: updatedRemaining,
+        data: result.data
+      });
     } catch (submitError) {
       console.error('API提交错误:', submitError)
-      return {
+      return NextResponse.json({
         success: false,
         message: submitError instanceof Error ? submitError.message : '表单提交失败',
         remaining
-      }
+      });
     }
   } catch (error) {
     console.error('表单提交错误:', error)
     // 确保在任何情况下都返回剩余次数
     const { remaining = 0 } = await checkSubmitLimit().catch(() => ({ canSubmit: false, remaining: 0 }))
     
-    return {
+    return NextResponse.json({
       success: false,
       message: '服务器处理错误，请稍后再试',
       remaining
-    }
+    });
+  }
+}
+
+/**
+ * 处理GET请求，用于获取剩余提交次数
+ */
+export async function GET(): Promise<NextResponse<ApiResponse>> {
+  try {
+    const { remaining } = await checkSubmitLimit()
+    
+    return NextResponse.json({
+      success: true,
+      message: '获取剩余提交次数成功',
+      remaining
+    });
+  } catch (error) {
+    console.error('获取剩余提交次数失败:', error)
+    
+    return NextResponse.json({
+      success: false,
+      message: '服务器处理错误，请稍后再试'
+    });
   }
 } 

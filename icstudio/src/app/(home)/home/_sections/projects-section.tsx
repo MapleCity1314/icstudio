@@ -11,6 +11,7 @@ import { ArrowRight, ExternalLink, Github } from 'lucide-react';
 import Image from 'next/image';
 import Magnet from '@/components/anime/Magnet/Magnet';
 import { motion } from 'framer-motion';
+import React from 'react';
 
 // 确保GSAP插件只注册一次
 if (typeof window !== 'undefined') {
@@ -304,7 +305,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, theme }) => {
       );
 };
 
-export function ProjectsSection() {
+export const ProjectsSection = React.memo(() => {
       const [mounted, setMounted] = useState(false);
       const { theme } = useTheme();
       const sectionRef = useRef<HTMLDivElement>(null);
@@ -465,4 +466,6 @@ export function ProjectsSection() {
                   </div>
             </section>
       );
-}
+})
+
+ProjectsSection.displayName = "ProjectsSection"

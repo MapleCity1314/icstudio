@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { dbFactory } from '@/lib/db/db-factory'
 import { FEEDBACK_MODEL_NAME, feedbackSchema, FeedbackType, FeedbackStatus, IFeedback } from '@/lib/db/schema/feedback'
 import { FilterQuery } from 'mongoose'
+import { ensureDbConnection } from '@/lib/db/init-db'
 
 // 注册Schema
 dbFactory.registerSchema(FEEDBACK_MODEL_NAME, feedbackSchema)
@@ -69,7 +70,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, message: '数据验证失败', errors }, { status: 400 })
     }
 
-    await dbFactory.initialize()
+    // 确保数据库已连接
+    await ensureDbConnection()
     
     // 获取服务
     const feedbackService = dbFactory.getService<IFeedback>(FEEDBACK_MODEL_NAME)
@@ -97,8 +99,6 @@ export async function POST(request: NextRequest) {
       { success: false, message: '服务器错误' }, 
       { status: 500 }
     )
-  } finally {
-        await dbFactory.disconnect()
   }
 }
 
@@ -131,8 +131,8 @@ export async function GET(request: NextRequest) {
       ]
     }
 
-    //链接数据库
-    await dbFactory.initialize()
+    // 确保数据库已连接
+    await ensureDbConnection()
     
     // 获取服务
     const feedbackService = dbFactory.getService<IFeedback>(FEEDBACK_MODEL_NAME)
@@ -154,8 +154,6 @@ export async function GET(request: NextRequest) {
       { success: false, message: '服务器错误' }, 
       { status: 500 }
     )
-  } finally {
-        await dbFactory.disconnect()
   }
 }
 
@@ -173,6 +171,9 @@ export async function DELETE(request: NextRequest) {
         { status: 400 }
       )
     }
+    
+    // 确保数据库已连接
+    await ensureDbConnection()
     
     // 获取服务
     const feedbackService = dbFactory.getService<IFeedback>(FEEDBACK_MODEL_NAME)
@@ -222,6 +223,9 @@ export async function PATCH(request: NextRequest) {
         { status: 400 }
       )
     }
+    
+    // 确保数据库已连接
+    await ensureDbConnection()
     
     // 获取服务
     const feedbackService = dbFactory.getService<IFeedback>(FEEDBACK_MODEL_NAME)

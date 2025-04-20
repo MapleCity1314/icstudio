@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation"
 import { motion, Variants, useAnimationControls } from "framer-motion"
 import { beatriceDisplay } from "@/app/fonts"
 import HeroBg from "@/components/bg/hero-bg"
+import React from "react"
 
 // 调试模式开关
 const DEBUG_MODE = false
@@ -137,7 +138,7 @@ const AnimatedCharacters = ({
   )
 }
 
-export function HeroSection() {
+const HeroSection = React.memo(() => {
   // 状态管理
   const [isLoaded, setIsLoaded] = useState(false)
   const [mounted, setMounted] = useState(false)
@@ -354,4 +355,9 @@ export function HeroSection() {
       </motion.div>
     </HeroBg>
   )
-}
+})
+
+// 添加displayName
+HeroSection.displayName = 'HeroSection'
+
+export default HeroSection

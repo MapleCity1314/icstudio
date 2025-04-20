@@ -1,6 +1,6 @@
 "use client"
 
-import type React from "react"
+import React from "react"
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { ArrowRight, Send, ExternalLink, Github } from "lucide-react"
@@ -34,7 +34,7 @@ const BilibiliIcon = () => (
   </svg>
 )
 
-export function Footer() {
+export const Footer = React.memo(() => {
   const [email, setEmail] = useState("")
   const [message, setMessage] = useState("")
   const [mounted, setMounted] = useState(false)
@@ -94,6 +94,59 @@ export function Footer() {
   useEffect(() => {
     if (!mounted || animationsInitialized) return
     
+    // 初始化动画函数
+    const initializeAnimations = () => {
+      // 确保先清理之前的动画
+      cleanupAnimations()
+      
+      // 仅在DOM元素存在时创建动画
+      if (formContainerRef.current && formTitleRef.current && formInputsRef.current && formBtnRef.current) {
+        // 表单容器动画
+        const formContainerAnim = gsap.fromTo(
+          formContainerRef.current,
+          { opacity: 0, x: 50 },
+          { opacity: 1, x: 0, duration: 0.8 }
+        )
+        animations.current.push(formContainerAnim)
+        
+        // 表单标题动画
+        const formTitleAnim = gsap.fromTo(
+          formTitleRef.current,
+          { opacity: 0, y: -20 },
+          { opacity: 1, y: 0, duration: 0.6, delay: 0.2 }
+        )
+        animations.current.push(formTitleAnim)
+        
+        // 表单输入框动画
+        if (formInputsRef.current.children.length > 0) {
+          const formInputsAnim = gsap.fromTo(
+            formInputsRef.current.children,
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.4, stagger: 0.1, delay: 0.4 }
+          )
+          animations.current.push(formInputsAnim)
+        }
+        
+        // 按钮动画
+        const formBtnAnim = gsap.fromTo(
+          formBtnRef.current,
+          { opacity: 0, scale: 0.9 },
+          { opacity: 1, scale: 1, duration: 0.6, delay: 0.8 }
+        )
+        animations.current.push(formBtnAnim)
+      }
+      
+      // 页脚各部分动画
+      if (footerSectionsRef.current && footerSectionsRef.current.children.length > 0) {
+        const footerSectionsAnim = gsap.fromTo(
+          footerSectionsRef.current.children,
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.8, stagger: 0.15 }
+        )
+        animations.current.push(footerSectionsAnim)
+      }
+    }
+    
     const checkVisibility = () => {
       if (footerRef.current && isElementInViewport(footerRef.current)) {
         initializeAnimations()
@@ -114,59 +167,6 @@ export function Footer() {
       window.removeEventListener('scroll', checkVisibility)
     }
   }, [mounted, animationsInitialized])
-  
-  // 初始化动画
-  const initializeAnimations = () => {
-    // 确保先清理之前的动画
-    cleanupAnimations()
-    
-    // 仅在DOM元素存在时创建动画
-    if (formContainerRef.current && formTitleRef.current && formInputsRef.current && formBtnRef.current) {
-      // 表单容器动画
-      const formContainerAnim = gsap.fromTo(
-        formContainerRef.current,
-        { opacity: 0, x: 50 },
-        { opacity: 1, x: 0, duration: 0.8 }
-      )
-      animations.current.push(formContainerAnim)
-      
-      // 表单标题动画
-      const formTitleAnim = gsap.fromTo(
-        formTitleRef.current,
-        { opacity: 0, y: -20 },
-        { opacity: 1, y: 0, duration: 0.6, delay: 0.2 }
-      )
-      animations.current.push(formTitleAnim)
-      
-      // 表单输入框动画
-      if (formInputsRef.current.children.length > 0) {
-        const formInputsAnim = gsap.fromTo(
-          formInputsRef.current.children,
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.4, stagger: 0.1, delay: 0.4 }
-        )
-        animations.current.push(formInputsAnim)
-      }
-      
-      // 按钮动画
-      const formBtnAnim = gsap.fromTo(
-        formBtnRef.current,
-        { opacity: 0, scale: 0.9 },
-        { opacity: 1, scale: 1, duration: 0.6, delay: 0.8 }
-      )
-      animations.current.push(formBtnAnim)
-    }
-    
-    // 页脚各部分动画
-    if (footerSectionsRef.current && footerSectionsRef.current.children.length > 0) {
-      const footerSectionsAnim = gsap.fromTo(
-        footerSectionsRef.current.children,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.8, stagger: 0.15 }
-      )
-      animations.current.push(footerSectionsAnim)
-    }
-  }
 
   // 处理订阅表单提交
   const handleSubmitNewsletter = (e: React.FormEvent) => {
@@ -421,4 +421,6 @@ export function Footer() {
       </div>
     </footer>
   )
-}
+})
+
+Footer.displayName = "Footer"

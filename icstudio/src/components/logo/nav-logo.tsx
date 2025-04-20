@@ -61,7 +61,7 @@ export function Logo({ size = 'md', className = '' }: LogoProps) {
                         {/* Logo图标 */}
                         <div className="relative flex items-center">
                               <Image
-                                    src={theme === 'dark' ? '/logo/logo-t.svg' : '/logo/logo-t.svg'}
+                                    src={theme === 'dark' ? '/logo/logo-t.png' : '/logo/logo-t.png'}
                                     alt="InfinityCreators Logo"
                                     width={getIconSize() * 3.3}
                                     height={getIconSize() * 1.0}

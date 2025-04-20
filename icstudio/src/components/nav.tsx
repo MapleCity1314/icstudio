@@ -7,6 +7,7 @@ import gsap from "gsap"
 import { Menu, X } from "lucide-react"
 import { Logo } from "@/components/logo/nav-logo"
 import { cn } from "@/lib/utils"
+import React from "react"
 
 // 调试模式开关
 const DEBUG_MODE = false
@@ -17,7 +18,7 @@ interface NavItem {
   children?: NavItem[]
 }
 
-const HomeNav = () => {
+const HomeNav = React.memo(() => {
   const { theme } = useTheme()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -309,6 +310,8 @@ const HomeNav = () => {
       </div>
     </div>
   )
-}
+})
+
+HomeNav.displayName = "HomeNav"
 
 export default HomeNav

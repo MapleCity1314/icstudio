@@ -7,13 +7,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { WavyBackground } from "@/components/ui/wavy-background"
+import React from "react"
 
 // 确保GSAP插件只注册一次
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
 
-const ContactSection = () => {
+const ContactSection = React.memo(() => {
   const [mounted, setMounted] = useState(false)
   
   const sectionRef = useRef<HTMLElement>(null)
@@ -150,5 +151,8 @@ const ContactSection = () => {
       </WavyBackground>
     </section>
   )
-}
+})
+
+ContactSection.displayName = "ContactSection"
+
 export default ContactSection;

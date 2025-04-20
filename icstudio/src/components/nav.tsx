@@ -19,7 +19,7 @@ interface NavItem {
 }
 
 const HomeNav = React.memo(() => {
-  const { theme } = useTheme()
+  const { theme, resolvedTheme } = useTheme()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
@@ -29,6 +29,9 @@ const HomeNav = React.memo(() => {
   const menuItemsRef = useRef<HTMLDivElement>(null)
   const desktopMenuRef = useRef<HTMLDivElement>(null)
   const hamburgerRef = useRef<HTMLButtonElement>(null)
+
+  // 当前使用的主题
+  const currentTheme = mounted ? (theme === 'system' ? resolvedTheme : theme) : 'dark';
 
   // Navigation items
   const navItems: NavItem[] = [
@@ -207,9 +210,6 @@ const HomeNav = React.memo(() => {
     }
   }, [isMenuOpen, mounted])
 
-  // If not mounted yet, return null to prevent hydration mismatch
-  if (!mounted) return null
-
   return (
     <div
       ref={navRef}
@@ -232,11 +232,14 @@ const HomeNav = React.memo(() => {
 
       {/* 右侧区域 - 确保菜单靠右 */}
       <div className="flex items-center justify-end ml-auto">
-        {/* Desktop Navigation - 只在非移动设备且未滚动时显示 */}
+        {/* Desktop Navigation - 保持一致的DOM结构，通过CSS控制显示/隐藏 */}
         <div
           ref={desktopMenuRef}
           className="items-center space-x-1 justify-end"
-          style={{ display: "none" }} // 初始隐藏，由JS控制显示
+          style={{ 
+            display: "flex", // 默认始终保持在DOM中，初始可见
+            opacity: 0 // 初始不可见，由JavaScript控制可见性
+          }}
         >
           {navItems.map((item) => (
             <Link
@@ -244,7 +247,7 @@ const HomeNav = React.memo(() => {
               href={item.href}
               className={cn(
                 "px-3 py-2 rounded-md text-sm font-medium transition-colors",
-                theme === "dark"
+                currentTheme === "dark"
                   ? "text-white/90 hover:text-white hover:bg-white/10"
                   : "text-gray-700 hover:text-black hover:bg-black/5",
               )}
@@ -256,23 +259,29 @@ const HomeNav = React.memo(() => {
 
         {/* 汉堡菜单按钮和下拉菜单内容 */}
         <div className="relative">
-          {/* 汉堡菜单按钮 */}
+          {/* 汉堡菜单按钮 - 保持固定尺寸并始终在DOM中 */}
           <button
             ref={hamburgerRef}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className={cn(
               "p-2 rounded-md transition-colors z-50",
-              theme === "dark"
+              currentTheme === "dark"
                 ? "text-white/90 hover:text-white hover:bg-white/10"
                 : "text-gray-700 hover:text-black hover:bg-black/5"
             )}
-            style={{ display: "none" }} // 初始隐藏，由JS控制显示
+            style={{ 
+              display: "block", // 始终显示，初始可见
+              opacity: 0,  // 初始不可见
+              width: "40px", // 固定宽度
+              height: "40px", // 固定高度
+              visibility: "visible" // 确保可见性一致
+            }}
             aria-label="切换菜单"
           >
             {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
 
-          {/* 下拉菜单内容 */}
+          {/* 下拉菜单内容 - 始终保持在DOM中 */}
           <div
             ref={menuRef}
             className="relative"
@@ -281,7 +290,7 @@ const HomeNav = React.memo(() => {
               ref={menuItemsRef}
               className={cn(
                 "absolute top-12 right-0 mt-2 p-2 rounded-lg shadow-lg min-w-[200px] w-48",
-                theme === "dark" ? "bg-gray-900/95" : "bg-white/95", // 几乎不透明
+                currentTheme === "dark" ? "bg-gray-900/95" : "bg-white/95", // 几乎不透明
               )}
               style={{
                 backdropFilter: "blur(10px)",
@@ -295,7 +304,7 @@ const HomeNav = React.memo(() => {
                   href={item.href}
                   className={cn(
                     "block px-4 py-2 rounded-md text-sm font-medium transition-colors w-full text-left",
-                    theme === "dark"
+                    currentTheme === "dark"
                       ? "text-white/90 hover:text-white hover:bg-white/10"
                       : "text-gray-700 hover:text-black hover:bg-black/5",
                   )}

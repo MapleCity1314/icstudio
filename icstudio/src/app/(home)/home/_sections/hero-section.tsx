@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, useCallback } from "react"
 import { useTheme } from "next-themes"
 import { usePathname } from "next/navigation"
 import { motion, Variants, useAnimationControls } from "framer-motion"
@@ -156,13 +156,13 @@ const HeroSection = React.memo(() => {
   const contentControls = useAnimationControls()
   
   // 添加强制重绘函数
-  const forceRepaint = () => {
+  const forceRepaint = useCallback(() => {
     if (containerRef.current) {
       const height = containerRef.current.offsetHeight
       return height
     }
     return 0
-  }
+  }, [])
 
   // DOM引用
   const containerRef = useRef<HTMLDivElement>(null)
@@ -184,33 +184,50 @@ const HeroSection = React.memo(() => {
     return () => {
       clearTimeout(timer)
     }
-  }, [])
+  }, [forceRepaint])
 
-  // 内容加载动画
-  useEffect(() => {
-    if (isLoaded && animationReady) {
-      // 先开始内容渐显
-      contentControls.start("visible")
+  // 启动动画序列的安全函数
+  const startAnimationSequence = useCallback(() => {
+    if (!mounted) return;
+    
+    // 先开始内容渐显
+    contentControls.start("visible").catch(e => console.error("Content animation error:", e))
       
-      // 重置并启动标题动画
-      titleControls.set("hidden")
-      titleControls.start("visible")
-        .then(() => {
-          // 标题动画完成后，启动左右文本动画
-          leftTextControls.set("initial")
-          rightTextControls.set("initial")
-          
-          leftTextControls.start("animate")
-            .then(() => leftTextControls.start("float"))
-          
-          rightTextControls.start("animate")
-            .then(() => rightTextControls.start("float"))
-        })
+    // 重置并启动标题动画
+    titleControls.set("hidden")
+    titleControls.start("visible")
+      .then(() => {
+        if (!mounted) return;
+        // 标题动画完成后，启动左右文本动画
+        leftTextControls.set("initial")
+        rightTextControls.set("initial")
+        
+        leftTextControls.start("animate")
+          .then(() => {
+            if (mounted) leftTextControls.start("float")
+          })
+          .catch(e => console.error("Left text animation error:", e))
+        
+        rightTextControls.start("animate")
+          .then(() => {
+            if (mounted) rightTextControls.start("float")
+          })
+          .catch(e => console.error("Right text animation error:", e))
+      })
+      .catch(e => console.error("Title animation error:", e))
+  }, [mounted, contentControls, titleControls, leftTextControls, rightTextControls])
+
+  // 内容加载动画 - 确保在组件挂载且动画就绪后执行
+  useEffect(() => {
+    if (isLoaded && animationReady && mounted) {
+      startAnimationSequence()
     }
-  }, [isLoaded, animationReady, titleControls, leftTextControls, rightTextControls, contentControls])
+  }, [isLoaded, animationReady, mounted, startAnimationSequence])
 
   // 路由变化时重置动画状态
   useEffect(() => {
+    if (!mounted) return;
+    
     if (!firstLoad.current) {
       // 标记为未加载状态，触发CSS过渡动画
       setIsLoaded(false)
@@ -227,19 +244,13 @@ const HeroSection = React.memo(() => {
       
       // 确保DOM有足够时间重置
       const timer = setTimeout(() => {
+        if (!mounted) return; // 检查组件是否仍然挂载
+        
         setIsLoaded(true)
         setAnimationReady(true)
         
-        // 启动动画序列
-        contentControls.start("visible")
-        titleControls.start("visible")
-          .then(() => {
-            leftTextControls.start("animate")
-              .then(() => leftTextControls.start("float"))
-            
-            rightTextControls.start("animate")
-              .then(() => rightTextControls.start("float"))
-          })
+        // 使用安全的动画启动函数
+        startAnimationSequence()
           
         if (DEBUG_MODE) console.log("路由变化重设动画 - 路由:", pathname)
       }, 10) // 增加延迟，确保组件完全重置
@@ -248,7 +259,7 @@ const HeroSection = React.memo(() => {
     } else {
       firstLoad.current = false
     }
-  }, [pathname, titleControls, leftTextControls, rightTextControls, contentControls])
+  }, [pathname, mounted, forceRepaint, startAnimationSequence, contentControls, titleControls, leftTextControls, rightTextControls])
 
   // 如果组件未挂载，返回空内容
   if (!mounted) return null

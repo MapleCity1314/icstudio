@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { useEffect, useRef, useCallback } from 'react';
 
 interface circles {
@@ -24,7 +25,7 @@ interface HeroBgProps {
       className?: string; // 允许额外的类名
 }
 
-const HeroBg = ({
+const HeroBg = React.memo(({
       children,
       minRadius = 200, // 默认最小圆半径
       maxRadius = 400, // 默认最大圆半径
@@ -186,7 +187,7 @@ const HeroBg = ({
                   </div>
             </div>
       );
-};
+});
 
 // 显式设置displayName，用于调试
 HeroBg.displayName = 'HeroBg';

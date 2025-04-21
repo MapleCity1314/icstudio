@@ -4,7 +4,6 @@ import { useEffect, useState, useRef } from 'react';
 import { useTheme } from 'next-themes';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, ExternalLink, Github } from 'lucide-react';
 // import { AiChatSimulator } from './ai-chat-simulator';
@@ -12,53 +11,54 @@ import Image from 'next/image';
 import Magnet from '@/components/anime/Magnet/Magnet';
 import { motion } from 'framer-motion';
 import React from 'react';
+import { CardContainer, CardBody, CardItem } from '@/components/ui/3d-card';
 
 // 确保GSAP插件只注册一次
 if (typeof window !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);
 }
 
-// 几何形状组件
-interface GeometricShapeProps {
-      className?: string;
-      style?: React.CSSProperties;
-      type?: 'circle' | 'triangle' | 'hexagon' | 'diamond';
-}
+// // 几何形状组件
+// interface GeometricShapeProps {
+//       className?: string;
+//       style?: React.CSSProperties;
+//       type?: 'circle' | 'triangle' | 'hexagon' | 'diamond';
+// }
 
-const GeometricShape: React.FC<GeometricShapeProps> = ({ className = '', style = {}, type = 'circle' }) => {
-      const shapes = {
-            circle: <div className={`rounded-full ${className}`} style={style}></div>,
-            triangle: (
-                  <div
-                        className={`${className}`}
-                        style={{
-                              ...style,
-                              clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-                        }}
-                  ></div>
-            ),
-            hexagon: (
-                  <div
-                        className={`${className}`}
-                        style={{
-                              ...style,
-                              clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)',
-                        }}
-                  ></div>
-            ),
-            diamond: (
-                  <div
-                        className={`${className}`}
-                        style={{
-                              ...style,
-                              clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)',
-                        }}
-                  ></div>
-            ),
-      };
+// const GeometricShape: React.FC<GeometricShapeProps> = ({ className = '', style = {}, type = 'circle' }) => {
+//       const shapes = {
+//             circle: <div className={`rounded-full ${className}`} style={style}></div>,
+//             triangle: (
+//                   <div
+//                         className={`${className}`}
+//                         style={{
+//                               ...style,
+//                               clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
+//                         }}
+//                   ></div>
+//             ),
+//             hexagon: (
+//                   <div
+//                         className={`${className}`}
+//                         style={{
+//                               ...style,
+//                               clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)',
+//                         }}
+//                   ></div>
+//             ),
+//             diamond: (
+//                   <div
+//                         className={`${className}`}
+//                         style={{
+//                               ...style,
+//                               clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)',
+//                         }}
+//                   ></div>
+//             ),
+//       };
 
-      return shapes[type];
-};
+//       return shapes[type];
+// };
 
 // 项目数据
 const projects = [
@@ -141,28 +141,6 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, theme }) => {
-      const cardRef = useRef<HTMLDivElement>(null);
-      const [rotation, setRotation] = useState({ x: 0, y: 0 });
-      const [isHovered, setIsHovered] = useState(false);
-
-      const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-            if (!cardRef.current) return;
-            const card = cardRef.current;
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const rotateX = (y - centerY) / 10;
-            const rotateY = (centerX - x) / 10;
-            
-            setRotation({ x: rotateX, y: rotateY });
-      };
-
-      const resetRotation = () => {
-            setRotation({ x: 0, y: 0 });
-      };
-
       const cardVariants = {
             hidden: { opacity: 0, y: 50 },
             visible: { 
@@ -178,129 +156,132 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, theme }) => {
 
       return (
             <motion.div
-                  ref={cardRef}
-                  className="relative"
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.2 }}
                   variants={cardVariants}
             >
-                  <Card
-                        className={`group relative overflow-hidden rounded-xl ${
+                  <CardContainer className="w-full">
+                        <CardBody className={`w-full h-[400px] min-h-[400px] ${
                               theme === 'dark' ? 'bg-gray-800/80' : 'bg-white/90'
-                        } shadow-2xl backdrop-blur-sm transition-all duration-300 border-0 hover:shadow-xl min-h-[400px]`}
-                        style={{
-                              transform: isHovered ? `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) scale3d(1.02, 1.02, 1.02)` : 'perspective(1000px) rotateX(0) rotateY(0)',
-                              transition: 'transform 0.3s ease',
-                        }}
-                        onMouseMove={handleMouseMove}
-                        onMouseEnter={() => setIsHovered(true)}
-                        onMouseLeave={() => {
-                              resetRotation();
-                              setIsHovered(false);
-                        }}
-                  >
-                        {/* 背景图形装饰 */}
-                        <div className="absolute -right-12 -top-12 z-0 opacity-20">
-                              <GeometricShape 
-                                    type={['circle', 'triangle', 'hexagon', 'diamond'][index % 4] as 'circle' | 'triangle' | 'hexagon' | 'diamond'} 
-                                    className={`w-32 h-32 bg-gradient-to-r ${project.color}`} 
-                                    style={{}}
-                              />
-                        </div>
-                        <div className="absolute -left-6 -bottom-6 z-0 opacity-20">
-                              <GeometricShape 
-                                    type={['diamond', 'hexagon', 'triangle', 'circle'][(index + 2) % 4] as 'circle' | 'triangle' | 'hexagon' | 'diamond'} 
-                                    className={`w-20 h-20 bg-gradient-to-r ${project.color}`} 
-                                    style={{}}
-                              />
-                        </div>
-
-                        {/* 项目状态标签 */}
-                        <div className={`absolute top-4 right-4 z-10 px-3 py-1 text-xs font-semibold rounded-full
-                              ${project.state === '已上线' 
-                                    ? 'bg-green-500/20 text-green-500 border border-green-500/30' 
-                                    : 'bg-yellow-500/20 text-yellow-500 border border-yellow-500/30'}`}>
-                              {project.state}
-                        </div>
-
-                        {/* 项目主图 */}
-                        <div className={`relative h-44 bg-gradient-to-r ${project.color} overflow-hidden`}>
-                              <div className="absolute inset-0 flex items-center justify-center bg-black/20">
-                                    <Image
-                                          src={project.imageUrl || '/placeholder.svg'}
-                                          alt={project.title}
-                                          width={400}
-                                          height={300}
-                                          className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity duration-300 transform group-hover:scale-105"
+                        } shadow-2xl backdrop-blur-sm rounded-xl border-0 hover:shadow-xl overflow-hidden relative`}>
+                              {/* 背景图形装饰
+                              <CardItem
+                                    translateZ={50}
+                                    className="absolute -right-12 -top-12 z-0 opacity-20"
+                              >
+                                    <GeometricShape 
+                                          type={['circle', 'triangle', 'hexagon', 'diamond'][index % 4] as 'circle' | 'triangle' | 'hexagon' | 'diamond'} 
+                                          className={`w-32 h-32 bg-gradient-to-r ${project.color}`} 
                                     />
-                              </div>
-                              
-                              {/* 悬停时显示的链接按钮 */}
-                              <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    {project.projectLink && (
-                                          <Magnet>
-                                                <a href={project.projectLink} target="_blank" rel="noopener noreferrer" 
-                                                      className="p-2 bg-white/90 rounded-full shadow-md hover:shadow-lg transition-shadow">
-                                                      <ExternalLink className="w-5 h-5 text-gray-800" />
-                                                </a>
-                                          </Magnet>
-                                    )}
-                                    {project.githubLink && (
-                                          <Magnet>
-                                                <a href={project.githubLink} target="_blank" rel="noopener noreferrer"
-                                                      className="p-2 bg-white/90 rounded-full shadow-md hover:shadow-lg transition-shadow">
-                                                      <Github className="w-5 h-5 text-gray-800" />
-                                                </a>
-                                          </Magnet>
-                                    )}
-                              </div>
-                        </div>
+                              </CardItem>
+                              <CardItem
+                                    translateZ={30}
+                                    className="absolute -left-6 -bottom-6 z-0 opacity-20"
+                              >
+                                    <GeometricShape 
+                                          type={['diamond', 'hexagon', 'triangle', 'circle'][(index + 2) % 4] as 'circle' | 'triangle' | 'hexagon' | 'diamond'} 
+                                          className={`w-20 h-20 bg-gradient-to-r ${project.color}`} 
+                                    />
+                              </CardItem> */}
 
-                        {/* 项目内容 */}
-                        <div className="p-6 z-10 relative">
-                              {/* 标题 */}
-                              <h3 className={`text-xl font-bold mb-2 ${
-                                    theme === 'dark' ? 'text-white' : 'text-gray-800'
-                              }`}>
-                                    {project.title}
-                              </h3>
-                              
-                              {/* 标签 */}
-                              <div className="flex flex-wrap gap-2 mb-3">
-                                    {project.tags?.map((tag, idx) => (
-                                          <span key={idx} 
-                                                className={`text-xs px-2 py-1 rounded-full ${
-                                                      theme === 'dark' 
-                                                            ? 'bg-gray-700 text-gray-300' 
-                                                            : 'bg-gray-200 text-gray-700'
-                                                }`}>
-                                                {tag}
-                                          </span>
-                                    ))}
-                              </div>
-                              
-                              {/* 描述 */}
-                              <p className={`${
-                                    theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-                              } text-sm line-clamp-3 mb-4`}>
-                                    {project.description}
-                              </p>
-                              
-                              {/* 按钮 */}
-                              <Button 
-                                    variant="outline" 
-                                    size="sm" 
-                                    className={`group mt-2 ${
-                                          theme === 'dark'
-                                                ? 'border-gray-700 hover:bg-gray-700'
-                                                : 'border-gray-300 hover:bg-gray-100'
+                              {/* 项目状态标签 */}
+                              <CardItem
+                                    translateZ={60}
+                                    className="absolute top-4 right-4 z-10"
+                              >
+                                    <div className={`px-3 py-1 text-xs font-semibold rounded-full
+                                          ${project.state === '已上线' 
+                                                ? 'bg-green-500/20 text-green-500 border border-green-500/30' 
+                                                : 'bg-yellow-500/20 text-yellow-500 border border-yellow-500/30'}`}>
+                                          {project.state}
+                                    </div>
+                              </CardItem>
+
+                              {/* 项目主图 */}
+                              <CardItem
+                                    translateZ={20}
+                                    className="relative h-44 w-full bg-gradient-to-r overflow-hidden"
+                              >
+                                    <div className={`absolute inset-0 flex items-center justify-center bg-black/20 ${project.color}`}>
+                                          <Image
+                                                src={project.imageUrl || '/placeholder.svg'}
+                                                alt={project.title}
+                                                width={400}
+                                                height={300}
+                                                className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity duration-300"
+                                          />
+                                    </div>
+                                    
+                                    {/* 悬停时显示的链接按钮 */}
+                                    <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                          {project.projectLink && (
+                                                <Magnet>
+                                                      <a href={project.projectLink} target="_blank" rel="noopener noreferrer" 
+                                                            className="p-2 bg-white/90 rounded-full shadow-md hover:shadow-lg transition-shadow">
+                                                            <ExternalLink className="w-5 h-5 text-gray-800" />
+                                                      </a>
+                                                </Magnet>
+                                          )}
+                                          {project.githubLink && (
+                                                <Magnet>
+                                                      <a href={project.githubLink} target="_blank" rel="noopener noreferrer"
+                                                            className="p-2 bg-white/90 rounded-full shadow-md hover:shadow-lg transition-shadow">
+                                                            <Github className="w-5 h-5 text-gray-800" />
+                                                      </a>
+                                                </Magnet>
+                                          )}
+                                    </div>
+                              </CardItem>
+
+                              {/* 项目内容 */}
+                              <CardItem
+                                    translateZ={40}
+                                    className="p-6 z-10 absolute bottom-0 left-0 right-0"
+                              >
+                                    {/* 标题 */}
+                                    <h3 className={`text-xl font-bold mb-2 ${
+                                          theme === 'dark' ? 'text-white' : 'text-gray-800'
                                     }`}>
-                                    了解更多
-                                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                              </Button>
-                        </div>
-                  </Card>
+                                          {project.title}
+                                    </h3>
+                                    
+                                    {/* 标签 */}
+                                    <div className="flex flex-wrap gap-2 mb-3">
+                                          {project.tags?.map((tag, idx) => (
+                                                <span key={idx} 
+                                                      className={`text-xs px-2 py-1 rounded-full ${
+                                                            theme === 'dark' 
+                                                                  ? 'bg-gray-700 text-gray-300' 
+                                                                  : 'bg-gray-200 text-gray-700'
+                                                      }`}>
+                                                      {tag}
+                                                </span>
+                                          ))}
+                                    </div>
+                                    
+                                    {/* 描述 */}
+                                    <p className={`${
+                                          theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                                    } text-sm line-clamp-3 mb-4`}>
+                                          {project.description}
+                                    </p>
+                                    
+                                    {/* 按钮 */}
+                                    <Button 
+                                          variant="outline" 
+                                          size="sm" 
+                                          className={`group mt-2 ${
+                                                theme === 'dark'
+                                                      ? 'border-gray-700 hover:bg-gray-700'
+                                                      : 'border-gray-300 hover:bg-gray-100'
+                                          }`}>
+                                          了解更多
+                                          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                                    </Button>
+                              </CardItem>
+                        </CardBody>
+                  </CardContainer>
             </motion.div>
       );
 };

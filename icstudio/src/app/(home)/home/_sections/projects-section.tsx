@@ -232,7 +232,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, theme }) => {
                                           alt={project.title}
                                           width={400}
                                           height={300}
-                                          className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity duration-300 transform group-hover:scale-105 transition-transform duration-700"
+                                          className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity duration-300 transform group-hover:scale-105"
                                     />
                               </div>
                               

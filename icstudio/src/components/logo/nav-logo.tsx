@@ -68,7 +68,7 @@ export function Logo({ size = 'md', className = '' }: LogoProps) {
                               }}
                         >
                               <Image
-                                    src={currentTheme === 'dark' ? '/logo/loome-w-logo.svg' : '/logo/loome-b-logo.svg'}
+                                    src={currentTheme === 'dark' ? '/logo/logo-t.png' : '/logo/logo-t.png'}
                                     alt="InfinityCreators Logo"
                                     width={iconWidth}
                                     height={iconHeight}

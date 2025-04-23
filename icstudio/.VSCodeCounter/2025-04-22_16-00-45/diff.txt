@@ -1,0 +1,52 @@
+Date : 2025-04-22 16:00:45
+Directory : e:\Projects\Nextjs-projects\icstudio\root\icstudio
+Total : 14 files,  690 codes, 65 comments, 88 blanks, all 843 lines
+
+Languages
++----------------+------------+------------+------------+------------+------------+
+| language       | files      | code       | comment    | blank      | total      |
++----------------+------------+------------+------------+------------+------------+
+| TypeScript JSX |         11 |        555 |         65 |         83 |        703 |
+| TypeScript     |          3 |        135 |          0 |          5 |        140 |
++----------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                   | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                      |         14 |        690 |         65 |         88 |        843 |
+| . (Files)                                                                                              |          1 |          9 |          0 |          0 |          9 |
+| src                                                                                                    |         13 |        681 |         65 |         88 |        834 |
+| src\app                                                                                                |         10 |        371 |         64 |         41 |        476 |
+| src\app\(home)                                                                                         |         10 |        371 |         64 |         41 |        476 |
+| src\app\(home)\home                                                                                    |          1 |        -71 |         56 |         -4 |        -19 |
+| src\app\(home)\home\_sections                                                                          |          1 |        -71 |         56 |         -4 |        -19 |
+| src\app\(home)\projects                                                                                |          5 |        295 |          7 |         30 |        332 |
+| src\app\(home)\what-we-do                                                                              |          4 |        147 |          1 |         15 |        163 |
+| src\app\(home)\what-we-do (Files)                                                                      |          1 |          2 |          0 |          0 |          2 |
+| src\app\(home)\what-we-do\sections                                                                     |          3 |        145 |          1 |         15 |        161 |
+| src\components                                                                                         |          3 |        310 |          1 |         47 |        358 |
+| src\components\bg                                                                                      |          1 |        145 |          0 |         27 |        172 |
+| src\components\ui                                                                                      |          2 |        165 |          1 |         20 |        186 |
++--------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| filename                                                                                               | language       | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| e:\Projects\Nextjs-projects\icstudio\root\icstudio\next.config.ts                                      | TypeScript     |          9 |          0 |          0 |          9 |
+| e:\Projects\Nextjs-projects\icstudio\root\icstudio\src\app\(home)\home\_sections\projects-section.tsx  | TypeScript JSX |        -71 |         56 |         -4 |        -19 |
+| e:\Projects\Nextjs-projects\icstudio\root\icstudio\src\app\(home)\projects\data.ts                     | TypeScript     |         80 |          0 |          2 |         82 |
+| e:\Projects\Nextjs-projects\icstudio\root\icstudio\src\app\(home)\projects\featured-project.tsx        | TypeScript JSX |         47 |          0 |          7 |         54 |
+| e:\Projects\Nextjs-projects\icstudio\root\icstudio\src\app\(home)\projects\page.tsx                    | TypeScript JSX |          8 |          0 |          2 |         10 |
+| e:\Projects\Nextjs-projects\icstudio\root\icstudio\src\app\(home)\projects\project-category.tsx        | TypeScript JSX |         32 |          0 |          5 |         37 |
+| e:\Projects\Nextjs-projects\icstudio\root\icstudio\src\app\(home)\projects\project-section.tsx         | TypeScript JSX |        128 |          7 |         14 |        149 |
+| e:\Projects\Nextjs-projects\icstudio\root\icstudio\src\app\(home)\what-we-do\page.tsx                  | TypeScript JSX |          2 |          0 |          0 |          2 |
+| e:\Projects\Nextjs-projects\icstudio\root\icstudio\src\app\(home)\what-we-do\sections\data.ts          | TypeScript     |         46 |          0 |          3 |         49 |
+| e:\Projects\Nextjs-projects\icstudio\root\icstudio\src\app\(home)\what-we-do\sections\service-card.tsx | TypeScript JSX |         32 |          0 |          5 |         37 |
+| e:\Projects\Nextjs-projects\icstudio\root\icstudio\src\app\(home)\what-we-do\sections\what-we-do.tsx   | TypeScript JSX |         67 |          1 |          7 |         75 |
+| e:\Projects\Nextjs-projects\icstudio\root\icstudio\src\components\bg\square-bg.tsx                     | TypeScript JSX |        145 |          0 |         27 |        172 |
+| e:\Projects\Nextjs-projects\icstudio\root\icstudio\src\components\ui\3d-card.tsx                       | TypeScript JSX |        141 |          1 |         14 |        156 |
+| e:\Projects\Nextjs-projects\icstudio\root\icstudio\src\components\ui\badge.tsx                         | TypeScript JSX |         24 |          0 |          6 |         30 |
+| Total                                                                                                  |                |        690 |         65 |         88 |        843 |
++--------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+

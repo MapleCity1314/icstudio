@@ -406,7 +406,7 @@ export const Footer = React.memo(() => {
               © {new Date().getFullYear()} Infinity Creators. 保留所有权利。
               <span className="hidden md:inline"> | </span>
               <br className="md:hidden" />
-              辽ICP备XXXXXXXX号-1 | 辽公网安备XXXXXXXXXXXXX号
+              辽ICP备2024044961号-1
             </div>
             <div className="mt-4 md:mt-0">
               <Link href="/privacy" className="text-sm text-gray-400 hover:text-white mr-4">

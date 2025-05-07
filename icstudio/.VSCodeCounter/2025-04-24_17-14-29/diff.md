@@ -1,0 +1,34 @@
+# Diff Summary
+
+Date : 2025-04-24 17:14:29
+
+Directory e:\\Projects\\Nextjs-projects\\icstudio\\root\\icstudio
+
+Total : 7 files,  1323 codes, 166 comments, 248 blanks, all 1737 lines
+
+[Summary](results.md) / [Details](details.md) / Diff Summary / [Diff Details](diff-details.md)
+
+## Languages
+| language | files | code | comment | blank | total |
+| :--- | ---: | ---: | ---: | ---: | ---: |
+| TypeScript JSX | 7 | 1,323 | 166 | 248 | 1,737 |
+
+## Directories
+| path | files | code | comment | blank | total |
+| :--- | ---: | ---: | ---: | ---: | ---: |
+| . | 7 | 1,323 | 166 | 248 | 1,737 |
+| src | 7 | 1,323 | 166 | 248 | 1,737 |
+| src\\app | 1 | 14 | 0 | 1 | 15 |
+| src\\app\\(home) | 1 | 14 | 0 | 1 | 15 |
+| src\\app\\(home)\\who-we-are | 1 | 14 | 0 | 1 | 15 |
+| src\\components | 6 | 1,309 | 166 | 247 | 1,722 |
+| src\\components\\anime | 3 | 521 | 42 | 89 | 652 |
+| src\\components\\anime\\Ribbons | 1 | 244 | 5 | 24 | 273 |
+| src\\components\\anime\\smudge | 1 | 234 | 34 | 58 | 326 |
+| src\\components\\anime\\wave-text | 1 | 43 | 3 | 7 | 53 |
+| src\\components\\bg | 2 | 644 | 116 | 141 | 901 |
+| src\\components\\bg (Files) | 1 | 328 | 78 | 87 | 493 |
+| src\\components\\bg\\waves-bg | 1 | 316 | 38 | 54 | 408 |
+| src\\components\\game | 1 | 144 | 8 | 17 | 169 |
+
+[Summary](results.md) / [Details](details.md) / Diff Summary / [Diff Details](diff-details.md)

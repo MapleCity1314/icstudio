@@ -40,7 +40,7 @@ export default function ProjectsSection() {
           className="relative"
         >
           <div className="aspect-square bg-neutral-100 rounded-md overflow-hidden">
-            <Image src="/abstract-monochrome-elements.png" alt="项目展示" className="w-full h-full object-cover" width={1920} height={1080} unoptimized={true} />
+            <Image src="/projects/abstract-monochrome-elements.png" alt="项目展示" className="w-full h-full object-cover" width={1920} height={1080} unoptimized={true} />
           </div>
         </motion.div>
 

@@ -7,8 +7,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { FormInput } from "@/components/ui/form-input"
 import { toast } from "@/components/ui/use-toast"
-import { useDB, DBConnectionStatus } from "@/hooks/use-db"
-import { FEEDBACK_MODEL_NAME, feedbackSchema } from "@/lib/db/schema/feedback"
+// import { useDB, DBConnectionStatus } from "@/hooks/use-db"
+// import { FEEDBACK_MODEL_NAME, feedbackSchema } from "@/lib/db/schema/feedback"
 
 type ContactMode = "collaborate" | "join" | "message"
 
@@ -82,11 +82,16 @@ interface FormErrors {
 
 const ContactForm = ({ mode }: ContactFormProps) => {
   // 获取DB服务
+  /* 注释掉数据库相关代码
   const { 
     registerSchema, 
     connectionStatus, 
     error: dbError 
   } = useDB();
+  */
+  
+  // 模拟连接状态
+  const connectionStatus = 'connected'; // 模拟已连接状态
 
   // 表单状态
   const [formData, setFormData] = useState<FormData>({
@@ -101,7 +106,7 @@ const ContactForm = ({ mode }: ContactFormProps) => {
   
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const [remainingSubmissions, setRemainingSubmissions] = useState<number | null>(null)
+  const [remainingSubmissions, setRemainingSubmissions] = useState<number | null>(5) // 设置一个默认值
   const [formError, setFormError] = useState<string | null>(null)
   const [fieldErrors, setFieldErrors] = useState<FormErrors>({})
   
@@ -111,11 +116,14 @@ const ContactForm = ({ mode }: ContactFormProps) => {
   const planeRef = useRef<SVGSVGElement | null>(null)
 
   // 注册Schema
+  /* 注释掉数据库Schema注册
   useEffect(() => {
     registerSchema(FEEDBACK_MODEL_NAME, feedbackSchema);
   }, [registerSchema]);
+  */
 
   // 获取初始剩余提交次数
+  /* 注释掉API交互
   useEffect(() => {
     const fetchRemainingSubmissions = async () => {
       try {
@@ -132,8 +140,10 @@ const ContactForm = ({ mode }: ContactFormProps) => {
 
     fetchRemainingSubmissions()
   }, [mode])
+  */
 
   // 监听数据库连接状态
+  /* 注释掉数据库连接监听
   useEffect(() => {
     if (connectionStatus === DBConnectionStatus.ERROR && dbError) {
       console.error("数据库连接错误:", dbError);
@@ -144,6 +154,7 @@ const ContactForm = ({ mode }: ContactFormProps) => {
       });
     }
   }, [connectionStatus, dbError]);
+  */
 
   // 验证表单字段
   const validateField = (name: string, value: string): string | undefined => {
@@ -252,6 +263,7 @@ const ContactForm = ({ mode }: ContactFormProps) => {
         })
       }
 
+      /* 注释掉API提交部分
       // 使用fetch API提交数据到新的API端点
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -301,6 +313,37 @@ const ContactForm = ({ mode }: ContactFormProps) => {
           variant: "destructive",
         })
       }
+      */
+      
+      // 模拟提交成功
+      console.log('表单提交数据（仅客户端）:', submitData);
+      
+      // 模拟服务器响应成功
+      setIsSubmitted(true);
+      const remainingCount = (remainingSubmissions || 5) - 1;
+      setRemainingSubmissions(remainingCount);
+      
+      // 显示成功提示
+      toast({
+        title: "提交成功",
+        description: `您的信息已提交成功，今日还可提交${remainingCount}次`,
+      });
+      
+      // 3秒后重置表单
+      setTimeout(() => {
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+          address: "",
+          company: "",
+          phone: "",
+          portfolio: ""
+        });
+        setIsSubmitted(false);
+        setFieldErrors({});
+      }, 3000);
+      
     } catch (error) {
       console.error("提交错误:", error)
       setFormError("表单提交失败，请稍后再试")
@@ -390,11 +433,13 @@ const ContactForm = ({ mode }: ContactFormProps) => {
                 </div>
               )}
               
+              {/* 注释掉数据库连接错误提示
               {connectionStatus === DBConnectionStatus.ERROR && (
                 <div className="bg-yellow-50 text-yellow-500 p-4 mb-6 rounded-md">
                   数据库连接错误，您的表单将通过备用系统提交
                 </div>
               )}
+              */}
               
               <AnimatePresence mode="wait">
                 {isSubmitted ? (

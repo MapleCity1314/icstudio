@@ -1,14 +1,13 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef } from "react"
 import { motion, AnimatePresence, Variants } from "framer-motion"
 import { Send } from "lucide-react"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { FormInput } from "@/components/ui/form-input"
 import { toast } from "@/components/ui/use-toast"
-// import { useDB, DBConnectionStatus } from "@/hooks/use-db"
-// import { FEEDBACK_MODEL_NAME, feedbackSchema } from "@/lib/db/schema/feedback"
+import { submitFeedback, type FeedbackData } from "../actions"
 
 type ContactMode = "collaborate" | "join" | "message"
 
@@ -60,14 +59,6 @@ interface FormData {
   portfolio?: string // 仅用于加入模式
 }
 
-// API响应接口
-interface ApiResponse {
-  success: boolean
-  message: string
-  remaining?: number
-  data?: unknown
-}
-
 // 错误对象接口
 interface FormErrors {
   name?: string
@@ -81,17 +72,6 @@ interface FormErrors {
 }
 
 const ContactForm = ({ mode }: ContactFormProps) => {
-  // 获取DB服务
-  /* 注释掉数据库相关代码
-  const { 
-    registerSchema, 
-    connectionStatus, 
-    error: dbError 
-  } = useDB();
-  */
-  
-  // 模拟连接状态
-  const connectionStatus = 'connected'; // 模拟已连接状态
 
   // 表单状态
   const [formData, setFormData] = useState<FormData>({
@@ -106,7 +86,6 @@ const ContactForm = ({ mode }: ContactFormProps) => {
   
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const [remainingSubmissions, setRemainingSubmissions] = useState<number | null>(5) // 设置一个默认值
   const [formError, setFormError] = useState<string | null>(null)
   const [fieldErrors, setFieldErrors] = useState<FormErrors>({})
   
@@ -114,47 +93,6 @@ const ContactForm = ({ mode }: ContactFormProps) => {
   const formRef = useRef<HTMLFormElement>(null)
   const sendButtonRef = useRef<HTMLButtonElement>(null)
   const planeRef = useRef<SVGSVGElement | null>(null)
-
-  // 注册Schema
-  /* 注释掉数据库Schema注册
-  useEffect(() => {
-    registerSchema(FEEDBACK_MODEL_NAME, feedbackSchema);
-  }, [registerSchema]);
-  */
-
-  // 获取初始剩余提交次数
-  /* 注释掉API交互
-  useEffect(() => {
-    const fetchRemainingSubmissions = async () => {
-      try {
-        const response = await fetch('/api/contact')
-        const data = await response.json() as ApiResponse
-        
-        if (data.remaining !== undefined) {
-          setRemainingSubmissions(data.remaining)
-        }
-      } catch (error) {
-        console.error("获取剩余提交次数失败:", error)
-      }
-    }
-
-    fetchRemainingSubmissions()
-  }, [mode])
-  */
-
-  // 监听数据库连接状态
-  /* 注释掉数据库连接监听
-  useEffect(() => {
-    if (connectionStatus === DBConnectionStatus.ERROR && dbError) {
-      console.error("数据库连接错误:", dbError);
-      toast({
-        title: "数据库连接错误",
-        description: "无法连接到数据库，请稍后再试",
-        variant: "destructive",
-      });
-    }
-  }, [connectionStatus, dbError]);
-  */
 
   // 验证表单字段
   const validateField = (name: string, value: string): string | undefined => {
@@ -248,7 +186,7 @@ const ContactForm = ({ mode }: ContactFormProps) => {
 
     try {
       // 准备提交数据
-      const submitData = {
+      const submitData: FeedbackData = {
         name: formData.name,
         email: formData.email,
         message: formData.message,
@@ -263,31 +201,17 @@ const ContactForm = ({ mode }: ContactFormProps) => {
         })
       }
 
-      /* 注释掉API提交部分
-      // 使用fetch API提交数据到新的API端点
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(submitData),
-      })
+      // 提交数据
+      const result = await submitFeedback(submitData)
       
-      const data = await response.json() as ApiResponse
-      
-      // 更新剩余提交次数
-      if (data.remaining !== undefined) {
-        setRemainingSubmissions(data.remaining)
-      }
-      
-      if (data.success) {
+      if (result.success) {
         // 表单提交成功
         setIsSubmitted(true)
         
         // 显示成功提示
         toast({
           title: "提交成功",
-          description: `${data.message}${data.remaining !== undefined ? `，今日还可提交${data.remaining}次` : ''}`,
+          description: result.message,
         })
         
         // 3秒后重置表单
@@ -306,43 +230,13 @@ const ContactForm = ({ mode }: ContactFormProps) => {
         }, 3000)
       } else {
         // 显示错误信息
-        setFormError(data.message)
+        setFormError(result.message)
         toast({
           title: "提交失败",
-          description: data.message,
+          description: result.message,
           variant: "destructive",
         })
       }
-      */
-      
-      // 模拟提交成功
-      console.log('表单提交数据（仅客户端）:', submitData);
-      
-      // 模拟服务器响应成功
-      setIsSubmitted(true);
-      const remainingCount = (remainingSubmissions || 5) - 1;
-      setRemainingSubmissions(remainingCount);
-      
-      // 显示成功提示
-      toast({
-        title: "提交成功",
-        description: `您的信息已提交成功，今日还可提交${remainingCount}次`,
-      });
-      
-      // 3秒后重置表单
-      setTimeout(() => {
-        setFormData({
-          name: "",
-          email: "",
-          message: "",
-          address: "",
-          company: "",
-          phone: "",
-          portfolio: ""
-        });
-        setIsSubmitted(false);
-        setFieldErrors({});
-      }, 3000);
       
     } catch (error) {
       console.error("提交错误:", error)
@@ -419,11 +313,6 @@ const ContactForm = ({ mode }: ContactFormProps) => {
             <CardHeader className="p-8 md:p-10 lg:p-16 pb-6">
               <CardTitle className="text-3xl md:text-4xl font-light text-black">
                 {getTitle()}
-                {remainingSubmissions !== null && (
-                  <span className="text-sm font-normal text-gray-500 block mt-2">
-                    今日还可提交 {remainingSubmissions} 次
-                  </span>
-                )}
               </CardTitle>
             </CardHeader>
             <CardContent className="p-8 md:p-10 lg:p-16 pt-4">
@@ -487,11 +376,6 @@ const ContactForm = ({ mode }: ContactFormProps) => {
                       transition={{ delay: 0.5 }}
                     >
                       感谢您的联系。我们会尽快回复您。
-                      {remainingSubmissions !== null && (
-                        <span className="block mt-2">
-                          今日还可提交 {remainingSubmissions} 次
-                        </span>
-                      )}
                     </motion.p>
                   </motion.div>
                 ) : (
@@ -604,23 +488,16 @@ const ContactForm = ({ mode }: ContactFormProps) => {
                           <motion.button
                             ref={sendButtonRef}
                             type="submit"
-                            disabled={isSubmitting || remainingSubmissions === 0}
+                            disabled={isSubmitting}
                             className={`w-16 h-16 rounded-full flex items-center justify-center ${
-                              remainingSubmissions === 0 
-                                ? 'bg-gray-200 cursor-not-allowed' 
-                                : 'bg-gray-100 hover:bg-gray-200'
+                              'bg-gray-100 hover:bg-gray-200'
                             } border-0`}
                             aria-label="发送消息"
-                            whileHover={remainingSubmissions === 0 ? {} : { scale: 1.05 }}
-                            whileTap={remainingSubmissions === 0 ? {} : { scale: 0.95 }}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
                           >
                             {isSubmitting ? (
                               <div className="h-5 w-5 border-2 border-t-transparent border-black rounded-full animate-spin"></div>
-                            ) : remainingSubmissions === 0 ? (
-                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM7 11h10v2H7v-2z" 
-                                  fill="currentColor"/>
-                              </svg>
                             ) : (
                               <motion.div
                                 whileHover={{ x: 3, y: -3 }}

@@ -2,25 +2,25 @@
 
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { Suspense, use, useState } from "react"
+import { fetchCategories } from "./news-actions"
 
 interface NewsFilterProps {
   activeFilter: string
   setActiveFilter: (filter: string) => void
 }
 
-const CATEGORIES = [
-  { id: "all", name: "全部" },
-  { id: "technology", name: "技术" },
-  { id: "projects", name: "项目" },
-  { id: "company", name: "公司" },
-  { id: "industry", name: "行业" },
-]
+/**
+ * @description 新闻页面选择器
+ */
 
-export function NewsFilter({ activeFilter, setActiveFilter }: NewsFilterProps) {
-  
+
+//分类目录主要组件
+function Categories({ activeFilter, setActiveFilter }: NewsFilterProps){
+  const CATEGORIES = use(fetchCategories())
 
   return (
-    <div className="flex flex-wrap gap-2 mb-8">
+    <Suspense fallback={<div>loading...</div>}>
       {CATEGORIES.map((category) => (
         <Button
           key={category.id}
@@ -35,6 +35,16 @@ export function NewsFilter({ activeFilter, setActiveFilter }: NewsFilterProps) {
           {category.name}
         </Button>
       ))}
+    </Suspense>
+  )
+}
+
+export function NewsFilter() {
+  const [activeFilter, setActiveFilter] = useState("all")
+
+  return (
+    <div className="flex flex-wrap gap-2 mb-8">
+      <Categories activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
     </div>
   )
 }

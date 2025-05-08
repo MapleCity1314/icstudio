@@ -1,14 +1,14 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { Suspense, use, useEffect, useRef } from "react"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Skeleton } from "@/components/ui/skeleton"
 import type { NewsItem } from "@/types/news"
 import gsap from "gsap"
 import Image from "next/image"
+import NewsCardLoading from "./news-card-loading"
 
 interface NewsGridProps {
   news: NewsItem[]
@@ -18,6 +18,7 @@ interface NewsGridProps {
 export function NewsGrid({ news, loading }: NewsGridProps) {
   const gridRef = useRef<HTMLDivElement>(null)
   const titleUnderlineRefs = useRef<(HTMLSpanElement | null)[]>([])
+  const LoadingNode = use(NewsCardLoading());
 
   // 设置refs数组以匹配新闻项目数量
   useEffect(() => {
@@ -70,18 +71,9 @@ export function NewsGrid({ news, loading }: NewsGridProps) {
   if (loading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-        {[...Array(6)].map((_, i) => (
-          <Card key={i} className="bg-gray-900 border-gray-800">
-            <CardContent className="p-0">
-              <Skeleton className="h-48 w-full rounded-t-lg" />
-              <div className="p-6">
-                <Skeleton className="h-6 w-3/4 mb-4" />
-                <Skeleton className="h-4 w-full mb-2" />
-                <Skeleton className="h-4 w-2/3" />
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+        <Suspense>
+          {LoadingNode}
+        </Suspense>
       </div>
     )
   }

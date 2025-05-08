@@ -16,6 +16,13 @@ interface NewsDetailProps {
   news: NewsItem
 }
 
+/**
+ * 新闻详情页
+ * @param news 新闻数据
+ * @description 负责展示新闻详情
+ * @returns 
+ */
+
 export function NewsDetail({ news }: NewsDetailProps) {
   const [relatedNews, setRelatedNews] = useState<NewsItem[]>([])
   const contentRef = useRef<HTMLDivElement>(null)

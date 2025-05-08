@@ -45,7 +45,7 @@ export function NewsHero() {
             新闻与动态
           </h1>
           <p ref={subtitleRef} className="text-xl md:text-2xl font-light text-white/70 max-w-3xl mx-auto">
-            了解IC Studio的最新项目、技术突破和行业见解
+            了解我们的最新项目、技术突破和行业见解
           </p>
         </div>
       </div>

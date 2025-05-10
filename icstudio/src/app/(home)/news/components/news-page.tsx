@@ -6,7 +6,7 @@ import { NewsGrid } from "./news-grid"
 import { NewsFilter } from "./news-filter"
 import { NewsPagination } from "./news-pagination"
 import type { NewsItem } from "@/types/news"
-import { fetchAllNews } from "@/lib/news/news-service"
+import { fetchNewsList } from "./news-actions"
 
 export function NewsPage() {
   const [news, setNews] = useState<NewsItem[]>([])
@@ -16,23 +16,30 @@ export function NewsPage() {
   const [activeFilter, setActiveFilter] = useState<string>("all")
   const itemsPerPage = 6
 
-  useEffect(() => {
-    const getNews = async () => {
-      try {
-        setLoading(true)
-        const data = await fetchAllNews()
-        setNews(data)
-        setFilteredNews(data)
-      } catch (error) {
-        console.error("获取新闻失败:", error)
-      } finally {
-        setLoading(false)
-      }
+  // 获取新闻数据
+  const fetchNews = async () => {
+    try {
+      setLoading(true)
+      const data = await fetchNewsList({
+        page: 1,
+        limit: 100, // 获取足够多的数据用于前端过滤
+        category: "all"
+      })
+      setNews(data)
+      setFilteredNews(data)
+    } catch (error) {
+      console.error("获取新闻失败:", error)
+    } finally {
+      setLoading(false)
     }
+  }
 
-    getNews()
+  // 初始加载数据
+  useEffect(() => {
+    fetchNews()
   }, [])
 
+  // 过滤处理
   useEffect(() => {
     if (activeFilter === "all") {
       setFilteredNews(news)

@@ -1,9 +1,9 @@
-"use server";
+'use client';
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Card, CardContent } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 
-const NewsCardLoading = async () : Promise<React.ReactNode> => {
+const NewsCardLoading = () => {
       return (
             <>
                   {[...Array(6)].map((_, i) => (

@@ -1,5 +1,8 @@
 'use server';
 
+import { getBaseUrl } from '@/app/get-base-url';
+import { NewsItem } from '@/types/news';
+
 /**
  * @description 新闻分类
  */
@@ -12,8 +15,13 @@ const CATEGORIES = [
       { id: 'industry', name: '行业' },
 ];
 
-//server组件
+/**
+ * @description 获取新闻分类
+ * @returns 分类列表
+ */
 export async function fetchCategories() {
+      // 延迟执行，避免同步调用引起状态更新问题
+      await new Promise(resolve => setTimeout(resolve, 0));
       return CATEGORIES;
 }
 
@@ -21,36 +29,54 @@ export async function fetchCategories() {
  * @description 获取新闻列表
  */
 
-interface getNewsListParams {
-      page: number; // 页码
-      limit: number; // 每页条数
-      category: string; // 分类
+export async function fetchNewsList(params: {
+      page: number;
+      limit: number;
+      category: string;
+}): Promise<NewsItem[]> {
+      try {
+            const baseUrl = getBaseUrl();
+            const response = await fetch(`${baseUrl}/api/news`);
+            if (!response.ok) {
+                  throw new Error('Failed to fetch news');
+            }
+            const allNews: NewsItem[] = await response.json();
+            
+            const { page, limit, category } = params;
+            const filteredNews = category === 'all' 
+                  ? allNews 
+                  : allNews.filter((item) => item.category === category);
+            
+            const startIndex = (page - 1) * limit;
+            const endIndex = startIndex + limit;
+            return filteredNews.slice(startIndex, endIndex);
+      } catch (error) {
+            console.error('获取新闻列表失败:', error);
+            return [];
+      }
 }
 
-interface NewsList {
-      data: NewsListItem[];
-}
-
-interface NewsListItem {
-      id: string; // 新闻ID
-      title: string; // 新闻标题
-      date: string; // 新闻日期
-      month: string; // 新闻月份
-      day: string; // 新闻日期
-      slug: string; // 新闻slug
-      excerpt: string; // 摘要
-      category: string; // 分类
-      readTime: string; // 阅读时间
-      image: string; // 图片路径
-      content: string; // 内容
-}
-
-export async function fetchNewsList(params: getNewsListParams) {
-      const { page, limit, category } = params;
-      const newsList = await fetch('http://localhost:3000/api/news');
-      const filteredNews = newsList.filter((item) => item.category === category);
-      const startIndex = (page - 1) * limit;
-      const endIndex = startIndex + limit;
-      const paginatedNews = filteredNews.slice(startIndex, endIndex);
-      return paginatedNews;
+/**
+ * @description 获取指定ID的新闻详情
+ * @param slug 新闻slug
+ */
+export async function fetchNewsDetail(slug: string): Promise<NewsItem | null> {
+      try {
+            const baseUrl = getBaseUrl();
+            const response = await fetch(`${baseUrl}/api/news`);
+            
+            if (!response.ok) {
+                  throw new Error('Failed to fetch news');
+            }
+            
+            const allNews: NewsItem[] = await response.json();
+            
+            // 查找指定slug的新闻
+            const news = allNews.find((item) => item.slug === slug);
+            
+            return news || null;
+      } catch (error) {
+            console.error('获取新闻详情失败:', error);
+            return null;
+      }
 }

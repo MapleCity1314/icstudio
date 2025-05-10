@@ -1,4 +1,5 @@
 import { dbFactory } from './db-factory';
+import { initDatabaseModels } from './init-models';
 
 let initialized = false;
 
@@ -11,6 +12,10 @@ export async function ensureDbConnection(uri?: string): Promise<boolean> {
   if (!initialized) {
     try {
       await dbFactory.initialize(uri);
+      
+      // 初始化数据库模型
+      initDatabaseModels();
+      
       initialized = true;
       console.log('数据库连接已初始化');
     } catch (error) {
